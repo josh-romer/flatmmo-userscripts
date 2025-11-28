@@ -30,7 +30,7 @@
             if (!text) return;
 
             // Create a URL-safe ID from the text
-            const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            const id = text.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
 
             // Set ID on the row
             row.id = id;
