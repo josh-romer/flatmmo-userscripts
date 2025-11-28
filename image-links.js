@@ -43,6 +43,13 @@
 
         const fileUrl = link.href;
 
+        // Set ID on the link for anchor navigation
+        const urlParts = fileUrl.split('/');
+        const filePageName = urlParts[urlParts.length - 1];
+        const imageName = decodeURIComponent(filePageName.replace('File:', ''));
+        const anchor = imageName.replace(/\s+/g, '_').replace(/\.[^.]+$/, '');
+        link.id = 'File:' + anchor;
+
         // Show modal on hover
         link.addEventListener('mouseenter', async (e) => {
             // Clear any pending hide timeout
@@ -72,11 +79,23 @@
                         // Clone the container to modify it
                         const filteredContainer = linksContainer.cloneNode(true);
 
-                        // Remove links that point to the current page
+                        // Get the image filename from the URL
+                        const urlParts = fileUrl.split('/');
+                        const filePageName = urlParts[urlParts.length - 1];
+                        // Extract just the filename (e.g., "File:Example.png" -> "Example.png")
+                        const imageName = decodeURIComponent(filePageName.replace('File:', ''));
+
+                        // Remove links that point to the current page and add anchors
                         const links = filteredContainer.querySelectorAll('a');
                         links.forEach(a => {
                             if (a.getAttribute('href') === currentPath) {
                                 a.parentElement.remove();
+                            } else {
+                                // Add anchor to link to the specific image on the page
+                                const currentHref = a.getAttribute('href');
+                                // Create anchor from filename (replace spaces and special chars)
+                                const anchor = imageName.replace(/\s+/g, '_').replace(/\.[^.]+$/, '');
+                                a.setAttribute('href', currentHref + '#File:' + anchor);
                             }
                         });
 
