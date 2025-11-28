@@ -23,7 +23,7 @@
 
     // Fetch and cache all page links from the navbox template
     async function getExcludedPageLinks() {
-        if (excludedPageLinks !== null) {
+        if (excludedPageLinks.size != 0) {
             return excludedPageLinks;
         }
 
@@ -138,11 +138,20 @@
                         const allLinks = Array.from(linksContainer.querySelectorAll('a'));
 
                         // Check if the navbox template is in the file usage list
-                        // TODO make more general
                         const navboxInUsageList = allLinks.some(a =>
                             a.getAttribute('href') === '/index.php/Template:Navbox_Enemies'
                         );
-                        const filteredLinks = allLinks.filter(a => (!navboxInUsageList && !excludedPageLinks.has(a.href)) &&  document.URL !== a.href);
+                        // TODO better fitering
+                        const filteredLinks = allLinks.filter(a => {
+                          const shortHref = a.getAttribute("href");
+                          if (document.URL === a.href) {
+                            return false;
+                          }
+                          if (navboxInUsageList && excludedPageLinks.has(shortHref)) {
+                              return false
+                          }
+                          return true
+                        });
 
                       const linkToUL = (a) => `<li><a href="${a.href}">${a.title}</a></li>`
                         // Check if there are any links left
