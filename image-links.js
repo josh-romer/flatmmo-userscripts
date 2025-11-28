@@ -34,19 +34,42 @@
     modal.style.fontSize = '14px';
     document.body.appendChild(modal);
 
-    // Find all image links
-    const imageLinks = document.querySelectorAll('a.mw-file-description');
+    // Find all image links (both file description pages and inline file links)
+    const fileDescriptionLinks = document.querySelectorAll('a.mw-file-description');
+    const inlineFileLinks = document.querySelectorAll('span[typeof="mw:File"] a');
+    const imageLinks = [...fileDescriptionLinks, ...inlineFileLinks];
 
     imageLinks.forEach(link => {
         const img = link.querySelector('img.mw-file-element');
         if (!img) return;
 
-        const fileUrl = link.href;
+        // For inline file links, get the image name from the src attribute
+        let fileUrl = link.href;
+        let imageName;
+
+        // Check if this is a file description link or an inline link
+        if (link.classList.contains('mw-file-description')) {
+            // File description link - use href
+            const urlParts = fileUrl.split('/');
+            const filePageName = urlParts[urlParts.length - 1];
+            imageName = decodeURIComponent(filePageName.replace('File:', ''));
+        } else {
+            // Inline file link - extract from img src
+            const imgSrc = img.getAttribute('src') || img.getAttribute('srcset')?.split(' ')[0];
+            if (!imgSrc) return;
+
+            // Extract filename from path like "/images/thumb/7/7e/Woodchips.png/40px-Woodchips.png"
+            const srcParts = imgSrc.split('/');
+            // Get the actual filename (not the thumbnail version)
+            const filename = srcParts.find(part => part.match(/\.(png|jpg|jpeg|gif|svg|webp)$/i) && !part.includes('px-'));
+            if (!filename) return;
+
+            imageName = decodeURIComponent(filename);
+            // Construct the file page URL
+            fileUrl = window.location.origin + '/index.php/File:' + imageName;
+        }
 
         // Set ID on the link for anchor navigation
-        const urlParts = fileUrl.split('/');
-        const filePageName = urlParts[urlParts.length - 1];
-        const imageName = decodeURIComponent(filePageName.replace('File:', ''));
         const anchor = imageName.replace(/\s+/g, '_').replace(/\.[^.]+$/, '');
         link.id = 'File:' + anchor;
 
