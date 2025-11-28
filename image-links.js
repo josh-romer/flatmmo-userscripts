@@ -47,7 +47,7 @@
         const urlParts = fileUrl.split('/');
         const filePageName = urlParts[urlParts.length - 1];
         const imageName = decodeURIComponent(filePageName.replace('File:', ''));
-        const anchor = imageName.replace(/\s+/g, '_').replace(/\.[^.]+$/, '');
+        const anchor = imageName.replace(/\s+/g, '_');
         link.id = 'File:' + anchor;
 
         // Show modal on hover
@@ -94,7 +94,7 @@
                                 // Add anchor to link to the specific image on the page
                                 const currentHref = a.getAttribute('href');
                                 // Create anchor from filename (replace spaces and special chars)
-                                const anchor = imageName.replace(/\s+/g, '_').replace(/\.[^.]+$/, '');
+                                const anchor = imageName.replace(/\s+/g, '_');
                                 a.setAttribute('href', currentHref + '#File:' + anchor);
                             }
                         });
