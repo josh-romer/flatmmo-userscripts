@@ -35,19 +35,25 @@
     document.body.appendChild(modal);
 
     // Find all image links
-    const imageLinks = document.querySelectorAll('a.mw-file-description');
+    const imageLinks = document.querySelectorAll('a:has(> .mw-file-element)');
 
     imageLinks.forEach(link => {
-        const img = link.querySelector('img.mw-file-element');
-        if (!img) return;
 
-        const fileUrl = link.href;
+        const fileUrl = (() => {
+            if(link.href.search("File") !== -1) {
+                return link.href;
+            }
+            else {
+             const filename = link.firstChild.src.split("/").pop().split("-").pop();
+             return `/index.php/File:${filename}`;
+            }
+        } )();
 
         // Set ID on the link for anchor navigation
-        const urlParts = fileUrl.split('/');
+        const urlParts = fileUrl.split("/");
         const filePageName = urlParts[urlParts.length - 1];
         const imageName = decodeURIComponent(filePageName.replace('File:', ''));
-        const anchor = imageName.replace(/\s+/g, '_');
+        const anchor = imageName.replace(/\s+/g, '_').replace(/\.[^.]+$/, '');
         link.id = 'File:' + anchor;
 
         // Show modal on hover
@@ -94,7 +100,7 @@
                                 // Add anchor to link to the specific image on the page
                                 const currentHref = a.getAttribute('href');
                                 // Create anchor from filename (replace spaces and special chars)
-                                const anchor = imageName.replace(/\s+/g, '_');
+                                const anchor = imageName.replace(/\s+/g, '_').replace(/\.[^.]+$/, '');
                                 a.setAttribute('href', currentHref + '#File:' + anchor);
                             }
                         });
