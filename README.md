@@ -10,3 +10,6 @@ Adds anchor links to all headers (h1-h6) on wiki pages. Each header gets a click
 
 ### image-links.js
 Shows a modal on image hover that displays which other wiki pages use that image. Helps navigate between related pages through shared images.
+
+### draw-player-on-top.js
+Modifies player draw function to always draw the user's player sprite last (on top).
