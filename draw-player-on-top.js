@@ -9,6 +9,7 @@
 // @inject-into page
 // ==/UserScript==
 
+// Function to paint player extracted from loop in original paint_players function.
 function paint_player(username) {
         if (players.hasOwnProperty(username)) {
 
@@ -237,6 +238,7 @@ function paint_player(username) {
         }
 }
 
+// Follows code in original function, but skips painting in order to paint last.
 function paint_players() {
     for (let username in players) {
 			if(username === Globals.local_username) {
