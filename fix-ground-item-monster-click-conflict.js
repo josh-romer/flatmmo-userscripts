@@ -53,8 +53,8 @@ function mouse_click_handler_patched(e) {
         if(is_mouse_on_ground_item(clicked_tile.x, clicked_tile.y, ground_item)) {
                 Globals.websocket.send('CLICKED_GROUND_ITEM=' + ground_item.uuid);
                 activate_click_animation("red", mouse_over_now.x, mouse_over_now.y);
-                // only break if going to click npc and not right click. kinda jank but want to minimize the diff
-                if(Object.values(npcs).some((npc) => is_mouse_on_npc(mouse_over_now.x, mouse_over_now.y, npc)) && e.which !== 3) {
+                // only break if going to click npc and not right click. kinda jank but want to minimize the diff. is_hidden means the npc is dead....
+                if(Object.values(npcs).some((n) => !n.is_hidden && is_mouse_on_npc(mouse_over_now.x, mouse_over_now.y, n)) && e.which !== 3) {
                   break;
                 }
                 return;
