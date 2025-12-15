@@ -4,6 +4,9 @@ result-*
 
 # Ignore automatically generated direnv output
 .direnv
+
+out/
+
 # Logs
 logs
 *.log

@@ -1,16 +1,29 @@
 {
   bun2nix,
+  stdenv,
   ...
 }:
-bun2nix.mkDerivation {
-  pname = "workspace-test-app";
+stdenv.mkDerivation {
+  pname = "test-build";
   version = "1.0.0";
 
   src = ./.;
+
+  nativeBuildInputs = [
+    bun2nix.hook
+  ];
 
   bunDeps = bun2nix.fetchBunDeps {
     bunNix = ./bun.nix;
   };
 
-  module = "packages/app/index.js";
+  buildPhase = ''
+    bun run build.ts 
+  '';
+
+  installPhase = ''
+    mkdir -p $out/dist
+
+    cp -R ./dist $out
+  '';
 }
