@@ -55,7 +55,6 @@ const HOTKEY_CONFIG = {
   }
 };
 
-window.removeEventListener("keypress", keypress_listener) 
 
 //can be from canvas or chat input
 const focusOrSendChat = () => {
@@ -147,6 +146,12 @@ const hotkeyListener = (e) => {
       return;
   }
 
+  if (e.key === "/") {
+    chat_ele.value = '/';
+    request_focus_chatbox();
+    e.preventDefault();
+  } 
+
   if (e.key in HOTKEY_CONFIG) {
     const pressedHotkey = HOTKEY_CONFIG[e.key];
     Globals.websocket.send(`SHORTCUT_KEY=${pressedHotkey.originalKey}`)
@@ -154,4 +159,5 @@ const hotkeyListener = (e) => {
   }
 }
 
+window.removeEventListener("keypress", keypress_listener) 
 window.addEventListener("keydown", hotkeyListener, false);
