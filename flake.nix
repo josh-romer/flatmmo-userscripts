@@ -2,11 +2,11 @@
   description = "Bun2Nix workspace sample";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     systems.url = "github:nix-systems/default";
 
-    bun2nix.url = "github:nix-community/bun2nix?tag=2.0.6";
+    bun2nix.url = "github:nix-community/bun2nix/2.0.6";
     bun2nix.inputs.nixpkgs.follows = "nixpkgs";
     bun2nix.inputs.systems.follows = "systems";
   };
