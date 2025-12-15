@@ -1,17 +1,20 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "test-workspace",
       "devDependencies": {
+        "@violentmonkey/types": "^0.3.1",
         "bun2nix": "^2.0.0",
+        "typescript": "^5.9.3",
       },
     },
-    "packages/app": {
-      "name": "@workspace/app",
+    "packages/better-custom-hotkeys": {
+      "name": "@workspace/better-custom-hotkeys",
       "version": "1.0.0",
-      "dependencies": {
-        "@workspace/lib": "workspace:*",
+      "devDependencies": {
+        "@violentmonkey/types": "^0.3.1",
       },
     },
     "packages/lib": {
@@ -23,7 +26,9 @@
     },
   },
   "packages": {
-    "@workspace/app": ["@workspace/app@workspace:packages/app"],
+    "@violentmonkey/types": ["@violentmonkey/types@0.3.1", "", { "dependencies": { "user-agent-data-types": "^0.4.2" } }, "sha512-40pq15SRSgTU5JAL0f6NabSH5Q6OIgm2IUF1j0eSm1QMkJgsH/bNU72qW2QNAPa9MSRnoyfKoiY0bcDdnztIMw=="],
+
+    "@workspace/better-custom-hotkeys": ["@workspace/better-custom-hotkeys@workspace:packages/better-custom-hotkeys"],
 
     "@workspace/lib": ["@workspace/lib@workspace:packages/lib"],
 
@@ -36,5 +41,9 @@
     "mri": ["mri@1.2.0", "", {}, "sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA=="],
 
     "sade": ["sade@1.8.1", "", { "dependencies": { "mri": "^1.1.0" } }, "sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A=="],
+
+    "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
+
+    "user-agent-data-types": ["user-agent-data-types@0.4.2", "", {}, "sha512-jXep3kO/dGNmDOkbDa8ccp4QArgxR4I76m3QVcJ1aOF0B9toc+YtSXtX5gLdDTZXyWlpQYQrABr6L1L2GZOghw=="],
   }
 }

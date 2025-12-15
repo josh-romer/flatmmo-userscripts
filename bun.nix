@@ -13,7 +13,11 @@
   ...
 }:
 {
-  "@workspace/app" = copyPathToStore ./packages/app;
+  "@violentmonkey/types@0.3.1" = fetchurl {
+     url = "https://registry.npmjs.org/@violentmonkey/types/-/types-0.3.1.tgz";
+     hash = "sha512-40pq15SRSgTU5JAL0f6NabSH5Q6OIgm2IUF1j0eSm1QMkJgsH/bNU72qW2QNAPa9MSRnoyfKoiY0bcDdnztIMw==";
+  };
+  "@workspace/better-custom-hotkeys" = copyPathToStore ./packages/better-custom-hotkeys;
   "@workspace/lib" = copyPathToStore ./packages/lib;
   "bun2nix@2.0.0" = fetchurl {
      url = "https://registry.npmjs.org/bun2nix/-/bun2nix-2.0.0.tgz";
@@ -34,5 +38,13 @@
   "sade@1.8.1" = fetchurl {
      url = "https://registry.npmjs.org/sade/-/sade-1.8.1.tgz";
      hash = "sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==";
+  };
+  "typescript@5.9.3" = fetchurl {
+     url = "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz";
+     hash = "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==";
+  };
+  "user-agent-data-types@0.4.2" = fetchurl {
+     url = "https://registry.npmjs.org/user-agent-data-types/-/user-agent-data-types-0.4.2.tgz";
+     hash = "sha512-jXep3kO/dGNmDOkbDa8ccp4QArgxR4I76m3QVcJ1aOF0B9toc+YtSXtX5gLdDTZXyWlpQYQrABr6L1L2GZOghw==";
   };
 }
