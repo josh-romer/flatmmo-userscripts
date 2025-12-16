@@ -10,6 +10,7 @@
     "@types/bun": "^1.3.4",
     "@violentmonkey/types": "^0.3.1",
     "bun2nix": "^2.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@workspace/flatmmo-types": "workspace:*"
   }
 }

@@ -1,44 +1,56 @@
-// import { chat_ele, request_focus_chatbox, Globals, request_unfocus_chatbox, has_npc_chat_message_modal_open, has_modal_open, has_npc_chat_options_modal_open, keypress_listener } from "flatmmo";
+
+
+// ==UserScript==
+// @name        Better hotkeys
+// @namespace   Violentmonkey Scripts
+// @match       https://flatmmo.com/play.php*
+// @grant       GM_getValue
+// @grant       GM_setValue
+// @version     0.001
+// @author      Joshu
+// @description set the default f key shortcuts to regular keys, sets enter to toggle chat focus istead of always listening.
+// @inject-into page
+// ==/UserScript==
 
 // User Defined HotKeys - Customize via ViolentMonkey storage (GM_getValue/GM_setValue)
-const HOTKEY_CONFIG: {[x: string]: {originalKey: string; description: string}} = {
-  [GM_getValue<string>('hotkey_worship', '1')]: {
+const HOTKEY_CONFIG = {
+  [GM_getValue('hotkey_worship', '1')]: {
     originalKey: 'F1',
     description: 'Worship - Activates the Run worship ability'
   },
-  [GM_getValue<string>('hotkey_consumeFood', '2')]: {
+  [GM_getValue('hotkey_consumeFood', '2')]: {
     originalKey: 'F2',
     description: 'Inventory - Consumes a piece of food'
   },
-  [GM_getValue<string>('hotkey_lightFire', '3')]: {
+  [GM_getValue('hotkey_lightFire', '3')]: {
     originalKey: 'F3',
     description: 'Inventory - Lights a fire'
   },
-  [GM_getValue<string>('hotkey_autoEquip1', 'q')]: {
+  [GM_getValue('hotkey_autoEquip1', 'q')]: {
     originalKey: 'F6',
     description: 'Equipment - Auto equips items that you\'ve configured'
   },
-  [GM_getValue<string>('hotkey_autoEquip2', 'w')]: {
+  [GM_getValue('hotkey_autoEquip2', 'w')]: {
     originalKey: 'F7',
     description: 'Equipment - Auto equips items that you\'ve configured'
   },
-  [GM_getValue<string>('hotkey_autoEquip3', 'e')]: {
+  [GM_getValue('hotkey_autoEquip3', 'e')]: {
     originalKey: 'F8',
     description: 'Equipment - Auto equips items that you\'ve configured'
   },
-  [GM_getValue<string>('hotkey_badge1', 'a')]: {
+  [GM_getValue('hotkey_badge1', 'a')]: {
     originalKey: 'F9',
     description: 'Badge - Right click a badge and click the \'set key binding\''
   },
-  [GM_getValue<string>('hotkey_badge2', 's')]: {
+  [GM_getValue('hotkey_badge2', 's')]: {
     originalKey: 'F10',
     description: 'Badge - Right click a badge and click the \'set key binding\''
   },
-  [GM_getValue<string>('hotkey_badge3', 'd')]: {
+  [GM_getValue('hotkey_badge3', 'd')]: {
     originalKey: 'F11',
     description: 'Badge - Right click a badge and click the \'set key binding\''
   },
-  [GM_getValue<string>('hotkey_badge4', 'f')]: {
+  [GM_getValue('hotkey_badge4', 'f')]: {
     originalKey: 'F12',
     description: 'Badge - Right click a badge and click the \'set key binding\''
   }
@@ -62,11 +74,11 @@ const focusOrSendChat = () => {
 }
 
 // Just leaving this section the same as the OG as much as possible
-const handleNpcChatModal = (e: KeyboardEvent) => {
+const handleNpcChatModal = (e) => {
     let keyCode = e.keyCode;
     if(has_npc_chat_message_modal_open()) {
         if(keyCode == 32) {
-            document.getElementById("npc-chat-message-modal-continue-btn")?.click();
+            document.getElementById("npc-chat-message-modal-continue-btn").click();
             e.preventDefault();
         }
         return;
@@ -75,8 +87,8 @@ const handleNpcChatModal = (e: KeyboardEvent) => {
         switch(keyCode) {
             case 49: {
                 let wrapper = document.getElementById("npc-chat-options-modal-content");
-                let options = wrapper?.getElementsByTagName("div");
-                if(options && options[0].style.display != 'none') {
+                let options = wrapper.getElementsByTagName("div");
+                if(options[0].style.display != 'none') {
                     options[0].click();
                 }
             }
@@ -84,8 +96,8 @@ const handleNpcChatModal = (e: KeyboardEvent) => {
             case 50:
                 {
                 let wrapper = document.getElementById("npc-chat-options-modal-content");
-                let options = wrapper?.getElementsByTagName("div");
-                if(options && options[1].style.display != 'none') {
+                let options = wrapper.getElementsByTagName("div");
+                if(options[1].style.display != 'none') {
                     options[1].click();
                 }
             }
@@ -94,8 +106,8 @@ const handleNpcChatModal = (e: KeyboardEvent) => {
             case 51:
                 {
                 let wrapper = document.getElementById("npc-chat-options-modal-content");
-                let options = wrapper?.getElementsByTagName("div");
-                if(options && options[2].style.display != 'none') {
+                let options = wrapper.getElementsByTagName("div");
+                if(options[2].style.display != 'none') {
                     options[2].click();
                 }
             }
@@ -104,8 +116,8 @@ const handleNpcChatModal = (e: KeyboardEvent) => {
             case 52:
                 {
                 let wrapper = document.getElementById("npc-chat-options-modal-content");
-                let options = wrapper?.getElementsByTagName("div");
-                if(options && options[3].style.display != 'none') {
+                let options = wrapper.getElementsByTagName("div");
+                if(options[3].style.display != 'none') {
                     options[3].click();
                 }
             }
@@ -114,7 +126,7 @@ const handleNpcChatModal = (e: KeyboardEvent) => {
       }
 }
 
-const hotkeyListener = (e: KeyboardEvent) => {
+const hotkeyListener = (e) => {
   if(e.repeat) return;
   // Checks from original handler
   if(Globals.local_username == null) return;
@@ -131,7 +143,7 @@ const hotkeyListener = (e: KeyboardEvent) => {
     e.preventDefault();
   } 
   
-  if(document.activeElement?.id != "body") {
+  if(document.activeElement.id != "body") {
       return;
   }
 

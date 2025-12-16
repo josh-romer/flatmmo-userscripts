@@ -26,7 +26,8 @@
      hash = "sha512-40pq15SRSgTU5JAL0f6NabSH5Q6OIgm2IUF1j0eSm1QMkJgsH/bNU72qW2QNAPa9MSRnoyfKoiY0bcDdnztIMw==";
   };
   "@workspace/better-custom-hotkeys" = copyPathToStore ./packages/better-custom-hotkeys;
-  "@workspace/lib" = copyPathToStore ./packages/lib;
+  "@workspace/draw-player-on-top" = copyPathToStore ./packages/draw-player-on-top;
+  "@workspace/flatmmo-types" = copyPathToStore ./packages/flatmmo-types;
   "bun-types@1.3.4" = fetchurl {
      url = "https://registry.npmjs.org/bun-types/-/bun-types-1.3.4.tgz";
      hash = "sha512-5ua817+BZPZOlNaRgGBpZJOSAQ9RQ17pkwPD0yR7CfJg+r8DgIILByFifDTa+IPDDxzf5VNhtNlcKqFzDgJvlQ==";
@@ -34,14 +35,6 @@
   "bun2nix@2.0.0" = fetchurl {
      url = "https://registry.npmjs.org/bun2nix/-/bun2nix-2.0.0.tgz";
      hash = "sha512-PCMrscGu/uEYQiG0jBZKf1ZM5nrpqYLjZNV+g4UQiGokakWsYrLaKRma4FqbxxwZ8s2VZXBkOyCn7U3Q/Bybjg==";
-  };
-  "is-number@6.0.0" = fetchurl {
-     url = "https://registry.npmjs.org/is-number/-/is-number-6.0.0.tgz";
-     hash = "sha512-Wu1VHeILBK8KAWJUAiSZQX94GmOE45Rg6/538fKwiloUu21KncEkYGPqob2oSZ5mUT73vLGrHQjKw3KMPwfDzg==";
-  };
-  "is-odd@3.0.1" = fetchurl {
-     url = "https://registry.npmjs.org/is-odd/-/is-odd-3.0.1.tgz";
-     hash = "sha512-CQpnWPrDwmP1+SMHXZhtLtJv90yiyVfluGsX5iNCVkrhQtU3TQHsUWPG9wkdk9Lgd5yNpAg9jQEo90CBaXgWMA==";
   };
   "mri@1.2.0" = fetchurl {
      url = "https://registry.npmjs.org/mri/-/mri-1.2.0.tgz";
