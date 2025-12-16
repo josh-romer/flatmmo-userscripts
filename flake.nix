@@ -50,7 +50,9 @@
           packages = {
             # Produce a package for this template with bun2nix in
             # the overlay
-            default = pkgs.callPackage ./default.nix { };
+            default = pkgs.callPackage ./mkUserscript.nix {
+              packagePath = ./packages/better-custom-hotkeys;
+            };
           };
           devShells.default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [

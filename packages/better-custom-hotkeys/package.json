@@ -1,9 +1,7 @@
 {
   "name": "@workspace/better-custom-hotkeys",
   "version": "1.0.0",
-  "scripts": {
-    "build": "bun build --compile --minify-whitespace --minify-syntax --targetbun --outfile dist/app ./better-custom-hotkeys.user.js"
-  },
+  "module": "index.ts",
   "dependencies": {},
   "devDependencies": {
     "@violentmonkey/types": "^0.3.1",

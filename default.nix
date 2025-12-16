@@ -3,7 +3,7 @@
   stdenv,
   ...
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "test-build";
   version = "1.0.0";
 
@@ -18,7 +18,7 @@ stdenv.mkDerivation {
   };
 
   buildPhase = ''
-    bun run build.ts 
+    bun build ./packages/better-custom-hotkeys/index.ts --outfile dist/${pname}.user.js 
   '';
 
   installPhase = ''
