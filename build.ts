@@ -1,8 +1,8 @@
 const packageName = "better-custom-hotkeys";
 
 await Bun.build({
-  entrypoints: ["./packages/better-custom-hotkeys/index.ts"],
-  banner: `
+	entrypoints: ["./packages/better-custom-hotkeys/index.ts"],
+	banner: `
 // ==UserScript==
 // @name        Better hotkeys
 // @namespace   Violentmonkey Scripts
@@ -15,6 +15,6 @@ await Bun.build({
 // @inject-into page
 // ==/UserScript==
   `,
-  outdir: "./dist",
-  naming: `${packageName}.user.js`
+	outdir: "./dist",
+	naming: `${packageName}.user.js`,
 });

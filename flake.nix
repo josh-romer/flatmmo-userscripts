@@ -10,6 +10,7 @@
     bun2nix.inputs.systems.follows = "systems";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   # Use the cached version of bun2nix from the nix-community cli
@@ -37,6 +38,9 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
       perSystem =
         { pkgs, system, ... }:
         {
@@ -45,6 +49,10 @@
             inherit system;
             config.allowUnfree = true;
             overlays = [ inputs.bun2nix.overlays.default ];
+          };
+
+          treefmt = {
+            programs.biome.enable = true;
           };
 
           packages = {

@@ -1,6 +1,6 @@
 {
-  "name": "@workspace/flatmmo-types",
-  "version": "0.0.1",
-  "dependencies": {},
-  "devDependencies": {}
+	"name": "@workspace/flatmmo-types",
+	"version": "0.0.1",
+	"dependencies": {},
+	"devDependencies": {}
 }
