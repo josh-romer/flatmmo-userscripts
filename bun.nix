@@ -26,7 +26,6 @@
      hash = "sha512-40pq15SRSgTU5JAL0f6NabSH5Q6OIgm2IUF1j0eSm1QMkJgsH/bNU72qW2QNAPa9MSRnoyfKoiY0bcDdnztIMw==";
   };
   "@workspace/better-custom-hotkeys" = copyPathToStore ./packages/better-custom-hotkeys;
-  "@workspace/draw-player-on-top" = copyPathToStore ./packages/draw-player-on-top;
   "@workspace/flatmmo-types" = copyPathToStore ./packages/flatmmo-types;
   "bun-types@1.3.4" = fetchurl {
      url = "https://registry.npmjs.org/bun-types/-/bun-types-1.3.4.tgz";
