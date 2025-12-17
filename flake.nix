@@ -11,7 +11,6 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    github-actions-nix.url = "github:synapdeck/github-actions-nix";
   };
 
   # Use the cached version of bun2nix from the nix-community cli
@@ -41,10 +40,14 @@
       ];
       imports = [
         inputs.treefmt-nix.flakeModule
-        inputs.github-actions-nix.flakeModule
       ];
       perSystem =
-        { pkgs, system, ... }:
+        {
+          config,
+          pkgs,
+          system,
+          ...
+        }:
         {
           # This sets `pkgs` to a nixpkgs with allowUnfree option set.
           _module.args.pkgs = import nixpkgs {
@@ -57,35 +60,11 @@
             programs.biome.enable = true;
           };
 
-          githubActions = {
-            enable = true;
-            workflowsDir = "./.github/workflows";
-            workflows = {
-
-              ci = {
-                name = "CI";
-                on = [
-                  "push"
-                  "pull_request"
-                ];
-                jobs = {
-                  build = {
-                    runsOn = "ubuntu-latest";
-                    steps = [
-                      {
-                        uses = "actions/checkout@v4";
-                      }
-                      {
-                        name = "Build";
-                        run = "npm run build";
-                      }
-                    ];
-                  };
-                };
-              };
-
-            };
-          };
+          # Create a package that copies the workflows to .github/workflows
+          packages.workflows = pkgs.runCommand "copy-workflows" { } ''
+            mkdir -p $out/.github/workflows
+            cp -r ${config.githubActions.workflowsDir}/* $out/.github/workflows/
+          '';
 
           packages = {
             # Produce a package for this template with bun2nix in
@@ -93,6 +72,7 @@
             default = pkgs.callPackage ./mkUserscript.nix {
               packagePath = ./packages/better-custom-hotkeys;
             };
+
           };
           devShells.default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
