@@ -59,37 +59,31 @@
 
           githubActions = {
             enable = true;
+            workflowsDir = "./.github/workflows";
             workflows = {
+
               ci = {
                 name = "CI";
-                on = "";
-                push = "";
-                pull_request = "";
-                jobs = "";
-                check = "";
-                runs-on = "ubuntu-22.04";
-                permissions = "";
-                id-token = "write";
-                contents = "read";
-                steps = [
-                  {
-                    uses = "actions/checkout@v4";
-                  }
-                  {
-                    uses = "DeterminateSystems/nix-installer-action@main";
-                  }
-                  {
-                    uses = "DeterminateSystems/magic-nix-cache-action@main";
-                  }
-                  {
-                    uses = "DeterminateSystems/flake-checker-action@main";
-                  }
-                  {
-                    name = "Run `nix build`";
-                  }
+                on = [
+                  "push"
+                  "pull_request"
                 ];
-                run = "nix build .";
+                jobs = {
+                  build = {
+                    runsOn = "ubuntu-latest";
+                    steps = [
+                      {
+                        uses = "actions/checkout@v4";
+                      }
+                      {
+                        name = "Build";
+                        run = "npm run build";
+                      }
+                    ];
+                  };
+                };
               };
+
             };
           };
 
