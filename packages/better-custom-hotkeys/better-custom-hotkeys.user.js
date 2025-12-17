@@ -11,48 +11,103 @@
 // ==/UserScript==
 
 // User Defined HotKeys - Customize via ViolentMonkey storage (GM_getValue/GM_setValue)
-const HOTKEY_CONFIG = {
-	[GM_getValue("hotkey_worship", "1")]: {
-		originalKey: "F1",
+const DEFAULT_HOTKEYS = {
+	1: {
+		action: "run",
 		description: "Worship - Activates the Run worship ability",
 	},
-	[GM_getValue("hotkey_consumeFood", "2")]: {
-		originalKey: "F2",
+	2: {
+		action: "eat",
 		description: "Inventory - Consumes a piece of food",
 	},
-	[GM_getValue("hotkey_lightFire", "3")]: {
-		originalKey: "F3",
+	3: {
+		action: "lightFire",
 		description: "Inventory - Lights a fire",
 	},
-	[GM_getValue("hotkey_autoEquip1", "q")]: {
-		originalKey: "F6",
+	q: {
+		action: "equip1",
 		description: "Equipment - Auto equips items that you've configured",
 	},
-	[GM_getValue("hotkey_autoEquip2", "w")]: {
-		originalKey: "F7",
+	w: {
+		action: "equip2",
 		description: "Equipment - Auto equips items that you've configured",
 	},
-	[GM_getValue("hotkey_autoEquip3", "e")]: {
-		originalKey: "F8",
+	e: {
+		action: "equip3",
 		description: "Equipment - Auto equips items that you've configured",
 	},
-	[GM_getValue("hotkey_badge1", "a")]: {
-		originalKey: "F9",
+	a: {
+		action: "badge1",
 		description: "Badge - Right click a badge and click the 'set key binding'",
 	},
-	[GM_getValue("hotkey_badge2", "s")]: {
-		originalKey: "F10",
+	s: {
+		action: "badge2",
 		description: "Badge - Right click a badge and click the 'set key binding'",
 	},
-	[GM_getValue("hotkey_badge3", "d")]: {
-		originalKey: "F11",
+	d: {
+		action: "badge3",
 		description: "Badge - Right click a badge and click the 'set key binding'",
 	},
-	[GM_getValue("hotkey_badge4", "f")]: {
-		originalKey: "F12",
+	f: {
+		action: "badge4",
 		description: "Badge - Right click a badge and click the 'set key binding'",
 	},
 };
+
+const ACTIONS = {
+	run: {
+		originalKey: "F1",
+		description: "Run",
+		socketCommand: "SHORTCUT_KEY=F1",
+	},
+	eat: {
+		originalKey: "F2",
+		description: "Consumes a piece of food",
+		socketCommand: "SHORTCUT_KEY=F2",
+	},
+	lightFire: {
+		originalKey: "F3",
+		description: "Lights a fire",
+		socketCommand: "SHORTCUT_KEY=F3",
+	},
+	equip1: {
+		originalKey: "F6",
+		description: "Equipment Auto equips items that you've configured",
+		socketCommand: "SHORTCUT_KEY=F6",
+	},
+	equip2: {
+		originalKey: "F7",
+		description: "Equipment - Auto equips items that you've configured",
+		socketCommand: "SHORTCUT_KEY=F7",
+	},
+	equip3: {
+		originalKey: "F8",
+		description: "Equipment - Auto equips items that you've configured",
+		socketCommand: "SHORTCUT_KEY=F8",
+	},
+	badge1: {
+		originalKey: "F9",
+		description: "Badge - Right click a badge and click the 'set key binding'",
+		socketCommand: "SHORTCUT_KEY=F9",
+	},
+	badge2: {
+		originalKey: "F10",
+		description: "Badge - Right click a badge and click the 'set key binding'",
+		socketCommand: "SHORTCUT_KEY=F10",
+	},
+	badge3: {
+		originalKey: "F11",
+		description: "Badge - Right click a badge and click the 'set key binding'",
+		socketCommand: "SHORTCUT_KEY=F11",
+	},
+	badge4: {
+		originalKey: "F12",
+		description: "Badge - Right click a badge and click the 'set key binding'",
+		socketCommand: "SHORTCUT_KEY=F12",
+	},
+};
+
+const hotkeys = GM_getValue("hotkeys", DEFAULT_HOTKEYS);
 
 //can be from canvas or chat input
 const focusOrSendChat = () => {
