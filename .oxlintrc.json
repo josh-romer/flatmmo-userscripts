@@ -2,9 +2,7 @@
 	"plugins": ["unicorn", "typescript", "oxc"],
 	"categories": {
 		"correctness": "error",
-		"suspicious": "error",
-		"pedantic": "warn",
-		"perf": "warn"
+		"suspicious": "error"
 	},
 	"rules": {
 		"for-direction": "warn",
@@ -139,5 +137,5 @@
 		"builtin": true
 	},
 	"globals": {},
-	"ignorePatterns": []
+	"ignorePatterns": ["metadata.js"]
 }

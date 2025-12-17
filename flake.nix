@@ -11,6 +11,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    github-actions-nix.url = "github:synapdeck/github-actions-nix";
   };
 
   # Use the cached version of bun2nix from the nix-community cli
@@ -40,6 +41,7 @@
       ];
       imports = [
         inputs.treefmt-nix.flakeModule
+        inputs.github-actions-nix.flakeModule
       ];
       perSystem =
         { pkgs, system, ... }:
@@ -53,6 +55,42 @@
 
           treefmt = {
             programs.biome.enable = true;
+          };
+
+          githubActions = {
+            enable = true;
+            workflows = {
+              ci = {
+                name = "CI";
+                on = "";
+                push = "";
+                pull_request = "";
+                jobs = "";
+                check = "";
+                runs-on = "ubuntu-22.04";
+                permissions = "";
+                id-token = "write";
+                contents = "read";
+                steps = [
+                  {
+                    uses = "actions/checkout@v4";
+                  }
+                  {
+                    uses = "DeterminateSystems/nix-installer-action@main";
+                  }
+                  {
+                    uses = "DeterminateSystems/magic-nix-cache-action@main";
+                  }
+                  {
+                    uses = "DeterminateSystems/flake-checker-action@main";
+                  }
+                  {
+                    name = "Run `nix build`";
+                  }
+                ];
+                run = "nix build .";
+              };
+            };
           };
 
           packages = {
