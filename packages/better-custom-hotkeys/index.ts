@@ -1,5 +1,3 @@
-// import { chat_ele, request_focus_chatbox, Globals, request_unfocus_chatbox, has_npc_chat_message_modal_open, has_modal_open, has_npc_chat_options_modal_open, keypress_listener } from "flatmmo";
-
 // User Defined HotKeys - Customize via ViolentMonkey storage (GM_getValue/GM_setValue)
 const HOTKEY_CONFIG: {
 	[x: string]: { originalKey: string; description: string };
