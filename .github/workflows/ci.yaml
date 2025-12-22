@@ -11,9 +11,9 @@ jobs:
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - run: nix build
-    - name: Upload PDF artifact
+    - name: Upload userscripts artifact
       if: github.event_name != 'release'
       uses: actions/upload-artifact@v4
       with:
-        name: resume
+        name: userscripts
         path: result/dist/@workspace/better-custom-hotkeys.user.js 
