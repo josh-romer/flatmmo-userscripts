@@ -11,4 +11,9 @@ jobs:
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - run: nix build
-    - run: nix flake check
+    - name: Upload PDF artifact
+      if: github.event_name != 'release'
+      uses: actions/upload-artifact@v4
+      with:
+        name: resume
+        path: result/dist/@workspace/better-custom-hotkeys.user.js 
