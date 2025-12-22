@@ -47,7 +47,12 @@ export const keypressToHashableString = (keypress: keypress) => {
 	return `${keypress.key}-${keypress.altKey}-${keypress.ctrlKey}-${keypress.metaKey}-${keypress.shiftKey}`.toLowerCase();
 };
 
+if (GM_getValue("hotkeys", null) === null) {
+	GM_setValue("hotkeys", DEFAULT_HOTKEYS);
+}
+
 const hotkeys = GM_getValue("hotkeys", DEFAULT_HOTKEYS);
+
 export const hashedHotkeyMap = hotkeys.reduce<Record<string, hotkey>>(
 	(result, hotkey) => {
 		const hashed = keypressToHashableString(hotkey.hotkey);
