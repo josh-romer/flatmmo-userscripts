@@ -20,6 +20,14 @@
         "@workspace/flatmmo-types": "workspace:*",
       },
     },
+    "packages/current-action-ui": {
+      "name": "@workspace/current-action-ui",
+      "version": "1.0.0",
+      "devDependencies": {
+        "@violentmonkey/types": "^0.3.1",
+        "@workspace/flatmmo-types": "workspace:*",
+      },
+    },
     "packages/flatmmo-types": {
       "name": "@workspace/flatmmo-types",
       "version": "0.0.1",
@@ -33,6 +41,8 @@
     "@violentmonkey/types": ["@violentmonkey/types@0.3.1", "", { "dependencies": { "user-agent-data-types": "^0.4.2" } }, "sha512-40pq15SRSgTU5JAL0f6NabSH5Q6OIgm2IUF1j0eSm1QMkJgsH/bNU72qW2QNAPa9MSRnoyfKoiY0bcDdnztIMw=="],
 
     "@workspace/better-custom-hotkeys": ["@workspace/better-custom-hotkeys@workspace:packages/better-custom-hotkeys"],
+
+    "@workspace/current-action-ui": ["@workspace/current-action-ui@workspace:packages/current-action-ui"],
 
     "@workspace/flatmmo-types": ["@workspace/flatmmo-types@workspace:packages/flatmmo-types"],
 

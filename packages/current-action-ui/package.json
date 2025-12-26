@@ -1,0 +1,10 @@
+{
+	"name": "@workspace/current-action-ui",
+	"version": "1.0.0",
+	"module": "index.ts",
+	"dependencies": {},
+	"devDependencies": {
+		"@violentmonkey/types": "^0.3.1",
+		"@workspace/flatmmo-types": "workspace:*"
+	}
+}

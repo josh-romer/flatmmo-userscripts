@@ -8,6 +8,13 @@ declare function has_modal_open(): boolean;
 declare function keypress_listener(): void;
 declare const chat_ele: HTMLInputElement;
 
+declare function paint_progress_bar(): void;
+declare let progress_bar_active: boolean;
+declare let progress_bar_at: number;
+declare let progress_bar_target: number;
+declare const TILE_SIZE: number;
+declare const ctx: CanvasRenderingContext2D;
+
 // const chat_ele: HTMLInputElement;
 // const Globals: {websocket: WebSocket};
 interface Globals {
@@ -17,5 +24,22 @@ interface Globals {
 	tab_active: boolean;
 	websocket_url: string;
 }
+
+interface player {
+	username: string;
+	client_x: number;
+	client_y: number;
+}
+
+interface mouseOver {
+	x: number;
+	y: number;
+	x_tile: number;
+	y_tile: number;
+}
+
+declare const mouse_over_now: mouseOver;
+
+declare const players: player[];
 
 declare const Globals: Globals;
