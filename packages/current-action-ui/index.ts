@@ -3,15 +3,20 @@ const customConfig = {
 	y: 80,
 	height: 20,
 	width: TILE_SIZE * 2,
-	backgroundColor: "black",
-	foregroundColor: "purple",
+	colors: {
+		activeBackgroundColor: "black",
+		activeForegroundColor: "purple",
+		activeStrokeColor: "green",
+		idleBackgroundColor: "black",
+		idleStrokeColor: "red",
+	},
 };
 
 const handleChangeColor = (
 	color: string,
-	field: "backgroundColor" | "foregroundColor",
+	field: keyof (typeof customConfig)["colors"],
 ) => {
-	customConfig[field] = color;
+	customConfig.colors[field] = color;
 };
 
 const menuModal = `
@@ -26,25 +31,50 @@ const menuModal = `
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10000;
-  min-width: 300px;
+  min-width: 320px;
+  display: none;
 ">
-  <p style="margin-top: 0; font-weight: bold;">Choose your colors:</p>
+  <p style="margin-top: 0; font-weight: bold;">Progress Bar Colors</p>
 
-  <div style="margin-bottom: 15px;">
-    <label for="foreground" style="display: block; margin-bottom: 5px;">Foreground color</label>
-    <input type="color" id="foreground" name="foreground" value="${customConfig.foregroundColor}" style="width: 100%; height: 40px; cursor: pointer;" />
+  <div style="margin-bottom: 20px;">
+    <p style="font-weight: bold; margin-bottom: 10px; color: #333;">Active State</p>
+
+    <div style="display: flex; gap: 10px;">
+      <div style="margin-bottom: 10px;">
+        <label for="activeBackground" style="display: block; margin-bottom: 5px; font-size: 14px;">Background</label>
+        <input type="color" id="activeBackground" value="${customConfig.colors.activeBackgroundColor}" style="height: 35px; cursor: pointer;" />
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label for="activeForeground" style="display: block; margin-bottom: 5px; font-size: 14px;">Foreground</label>
+        <input type="color" id="activeForeground" value="${customConfig.colors.activeForegroundColor}" style="height: 35px; cursor: pointer;" />
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label for="activeStroke" style="display: block; margin-bottom: 5px; font-size: 14px;">Stroke</label>
+        <input type="color" id="activeStroke" value="${customConfig.colors.activeStrokeColor}" style="height: 35px; cursor: pointer;" />
+      </div>
+    </div>
   </div>
 
-  <div style="margin-bottom: 10px;">
-    <label for="background" style="display: block; margin-bottom: 5px;">Background color</label>
-    <input
-      type="color"
-      id="background"
-      name="background"
-      value="${customConfig.backgroundColor}"
-      colorspace="display-p3"
-      alpha
-      style="width: 100%; height: 40px; cursor: pointer;" />
+  <div style="margin-bottom: 15px;">
+    <p style="font-weight: bold; margin-bottom: 10px; color: #333;">Idle State</p>
+
+    <div style="display: flex; gap: 10px;">
+      <div style="margin-bottom: 10px;">
+        <label for="idleBackground" style="display: block; margin-bottom: 5px; font-size: 14px;">Background</label>
+        <input type="color" id="idleBackground" value="${customConfig.colors.idleBackgroundColor}" style="height: 35px; cursor: pointer;" />
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label for="idleStroke" style="display: block; margin-bottom: 5px; font-size: 14px;">Stroke</label>
+        <input type="color" id="idleStroke" value="${customConfig.colors.idleStrokeColor}" style="height: 35px; cursor: pointer;" />
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
+    Press Ctrl+Alt+M to toggle
   </div>
 </div>
 `;
@@ -55,37 +85,66 @@ modalContainer.innerHTML = menuModal;
 document.body.appendChild(modalContainer);
 
 // Attach event listeners to the color inputs
-const foregroundInput = document.getElementById(
-	"foreground",
+const activeBackgroundInput = document.getElementById(
+	"activeBackground",
 ) as HTMLInputElement;
-const backgroundInput = document.getElementById(
-	"background",
+const activeForegroundInput = document.getElementById(
+	"activeForeground",
+) as HTMLInputElement;
+const activeStrokeInput = document.getElementById(
+	"activeStroke",
+) as HTMLInputElement;
+const idleBackgroundInput = document.getElementById(
+	"idleBackground",
+) as HTMLInputElement;
+const idleStrokeInput = document.getElementById(
+	"idleStroke",
 ) as HTMLInputElement;
 
-foregroundInput?.addEventListener("input", (e) => {
-	handleChangeColor((e.target as HTMLInputElement).value, "foregroundColor");
+activeBackgroundInput?.addEventListener("input", (e) => {
+	handleChangeColor(
+		(e.target as HTMLInputElement).value,
+		"activeBackgroundColor",
+	);
 });
 
-backgroundInput?.addEventListener("input", (e) => {
-	handleChangeColor((e.target as HTMLInputElement).value, "backgroundColor");
+activeForegroundInput?.addEventListener("input", (e) => {
+	handleChangeColor(
+		(e.target as HTMLInputElement).value,
+		"activeForegroundColor",
+	);
+});
+
+activeStrokeInput?.addEventListener("input", (e) => {
+	handleChangeColor((e.target as HTMLInputElement).value, "activeStrokeColor");
+});
+
+idleBackgroundInput?.addEventListener("input", (e) => {
+	handleChangeColor(
+		(e.target as HTMLInputElement).value,
+		"idleBackgroundColor",
+	);
+});
+
+idleStrokeInput?.addEventListener("input", (e) => {
+	handleChangeColor((e.target as HTMLInputElement).value, "idleStrokeColor");
 });
 
 function paintCustomProgressBar() {
 	//progress bar
+	const { x, y, height, width, colors } = customConfig;
 	if (progress_bar_active) {
-		const { x, y, height, width } = customConfig;
 		const perc = progress_bar_at / progress_bar_target;
-		ctx.fillStyle = customConfig.backgroundColor;
+		ctx.fillStyle = colors.activeBackgroundColor;
 		ctx.fillRect(x, y - TILE_SIZE / 8, width, height);
-		ctx.fillStyle = customConfig.foregroundColor;
+		ctx.fillStyle = colors.activeForegroundColor;
 		ctx.fillRect(x, y - TILE_SIZE / 8, width * perc, height);
-		ctx.strokeStyle = "green";
+		ctx.strokeStyle = colors.activeStrokeColor;
 		ctx.strokeRect(x, y - TILE_SIZE / 8, width, height);
 	} else {
-		const { x, y, height, width } = customConfig;
-		ctx.fillStyle = customConfig.backgroundColor;
+		ctx.fillStyle = colors.idleBackgroundColor;
 		ctx.fillRect(x, y - TILE_SIZE / 8, width, height);
-		ctx.strokeStyle = "red";
+		ctx.strokeStyle = colors.idleStrokeColor;
 		ctx.strokeRect(x, y - TILE_SIZE / 8, width, height);
 	}
 }
@@ -114,5 +173,11 @@ function moveBar(this: Window, ev: KeyboardEvent) {
 	if (ev.altKey && ev.ctrlKey && ev.key === "k") {
 		customConfig.width = customConfig.width * 1.1;
 		customConfig.height = customConfig.height * 1.1;
+	}
+	if (ev.altKey && ev.ctrlKey && ev.key === "m") {
+		const modal = document.getElementById("color-picker-modal");
+		if (modal) {
+			modal.style.display = modal.style.display === "none" ? "block" : "none";
+		}
 	}
 }
