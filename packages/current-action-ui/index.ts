@@ -15,24 +15,37 @@ const handleChangeColor = (
 };
 
 const menuModal = `
-<div>
-<p>Choose your colors:</p>
+<div id="color-picker-modal" style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  min-width: 300px;
+">
+  <p style="margin-top: 0; font-weight: bold;">Choose your colors:</p>
 
-<div>
-  <input type="color" id="foreground" name="foreground" value="${customConfig.foregroundColor}" />
-  <label for="foreground">Foreground color</label>
-</div>
+  <div style="margin-bottom: 15px;">
+    <label for="foreground" style="display: block; margin-bottom: 5px;">Foreground color</label>
+    <input type="color" id="foreground" name="foreground" value="${customConfig.foregroundColor}" style="width: 100%; height: 40px; cursor: pointer;" />
+  </div>
 
-<div>
-  <input
-    type="color"
-    id="background"
-    name="background"
-    value="${customConfig.backgroundColor}"
-    colorspace="display-p3"
-    alpha />
-  <label for="background">Background color</label>
-</div>
+  <div style="margin-bottom: 10px;">
+    <label for="background" style="display: block; margin-bottom: 5px;">Background color</label>
+    <input
+      type="color"
+      id="background"
+      name="background"
+      value="${customConfig.backgroundColor}"
+      colorspace="display-p3"
+      alpha
+      style="width: 100%; height: 40px; cursor: pointer;" />
+  </div>
 </div>
 `;
 
