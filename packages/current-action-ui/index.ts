@@ -1,4 +1,4 @@
-const customConfig = {
+const defaultConfig = {
 	x: 10,
 	y: 80,
 	height: 20,
@@ -12,11 +12,17 @@ const customConfig = {
 	},
 };
 
+if (GM_getValue("config", null) === null) {
+	GM_setValue("config", config);
+}
+const config = GM_getValue("config", defaultConfig);
+
 const handleChangeColor = (
 	color: string,
-	field: keyof (typeof customConfig)["colors"],
+	field: keyof (typeof config)["colors"],
 ) => {
-	customConfig.colors[field] = color;
+	config.colors[field] = color;
+	GM_setValue(`config`, config);
 };
 
 const menuModal = `
@@ -42,17 +48,17 @@ const menuModal = `
     <div style="display: flex; gap: 10px;">
       <div style="margin-bottom: 10px;">
         <label for="activeBackground" style="display: block; margin-bottom: 5px; font-size: 14px;">Background</label>
-        <input type="color" id="activeBackground" value="${customConfig.colors.activeBackgroundColor}" style="height: 35px; cursor: pointer;" />
+        <input type="color" id="activeBackground" value="${config.colors.activeBackgroundColor}" style="height: 35px; cursor: pointer;" />
       </div>
 
       <div style="margin-bottom: 10px;">
         <label for="activeForeground" style="display: block; margin-bottom: 5px; font-size: 14px;">Foreground</label>
-        <input type="color" id="activeForeground" value="${customConfig.colors.activeForegroundColor}" style="height: 35px; cursor: pointer;" />
+        <input type="color" id="activeForeground" value="${config.colors.activeForegroundColor}" style="height: 35px; cursor: pointer;" />
       </div>
 
       <div style="margin-bottom: 10px;">
         <label for="activeStroke" style="display: block; margin-bottom: 5px; font-size: 14px;">Stroke</label>
-        <input type="color" id="activeStroke" value="${customConfig.colors.activeStrokeColor}" style="height: 35px; cursor: pointer;" />
+        <input type="color" id="activeStroke" value="${config.colors.activeStrokeColor}" style="height: 35px; cursor: pointer;" />
       </div>
     </div>
   </div>
@@ -63,12 +69,12 @@ const menuModal = `
     <div style="display: flex; gap: 10px;">
       <div style="margin-bottom: 10px;">
         <label for="idleBackground" style="display: block; margin-bottom: 5px; font-size: 14px;">Background</label>
-        <input type="color" id="idleBackground" value="${customConfig.colors.idleBackgroundColor}" style="height: 35px; cursor: pointer;" />
+        <input type="color" id="idleBackground" value="${config.colors.idleBackgroundColor}" style="height: 35px; cursor: pointer;" />
       </div>
 
       <div style="margin-bottom: 10px;">
         <label for="idleStroke" style="display: block; margin-bottom: 5px; font-size: 14px;">Stroke</label>
-        <input type="color" id="idleStroke" value="${customConfig.colors.idleStrokeColor}" style="height: 35px; cursor: pointer;" />
+        <input type="color" id="idleStroke" value="${config.colors.idleStrokeColor}" style="height: 35px; cursor: pointer;" />
       </div>
     </div>
   </div>
@@ -132,7 +138,7 @@ idleStrokeInput?.addEventListener("input", (e) => {
 
 function paintCustomProgressBar() {
 	//progress bar
-	const { x, y, height, width, colors } = customConfig;
+	const { x, y, height, width, colors } = config;
 	if (progress_bar_active) {
 		const perc = progress_bar_at / progress_bar_target;
 		ctx.fillStyle = colors.activeBackgroundColor;
@@ -158,26 +164,45 @@ const paint_progress_bar_proxy = new Proxy(paint_progress_bar, {
 });
 
 window.addEventListener("keydown", moveBar);
+window.addEventListener("keyup", setCoordinates);
 
 unsafeWindow.paint_progress_bar = paint_progress_bar_proxy;
 
+GM_registerMenuCommand(
+	"Reset to default settings",
+	() => GM_setValue("config", config),
+	{},
+);
+GM_registerMenuCommand;
+
 function moveBar(this: Window, ev: KeyboardEvent) {
 	if (ev.altKey && ev.ctrlKey && ev.key === "z") {
-		customConfig.x = mouse_over_now.x;
-		customConfig.y = mouse_over_now.y;
+		config.x = mouse_over_now.x;
+		config.y = mouse_over_now.y;
 	}
 	if (ev.altKey && ev.ctrlKey && ev.key === "j") {
-		customConfig.width = customConfig.width * 0.9;
-		customConfig.height = customConfig.height * 0.9;
+		config.width = config.width * 0.9;
+		config.height = config.height * 0.9;
 	}
 	if (ev.altKey && ev.ctrlKey && ev.key === "k") {
-		customConfig.width = customConfig.width * 1.1;
-		customConfig.height = customConfig.height * 1.1;
+		config.width = config.width * 1.1;
+		config.height = config.height * 1.1;
 	}
 	if (ev.altKey && ev.ctrlKey && ev.key === "m") {
 		const modal = document.getElementById("color-picker-modal");
 		if (modal) {
 			modal.style.display = modal.style.display === "none" ? "block" : "none";
 		}
+	}
+}
+function setCoordinates(this: Window, ev: KeyboardEvent) {
+	if (ev.altKey && ev.ctrlKey && ev.key === "z") {
+		GM_setValue("config", config);
+	}
+	if (ev.altKey && ev.ctrlKey && ev.key === "j") {
+		GM_setValue("config", config);
+	}
+	if (ev.altKey && ev.ctrlKey && ev.key === "k") {
+		GM_setValue("config", config);
 	}
 }
