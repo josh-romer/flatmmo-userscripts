@@ -170,7 +170,14 @@ unsafeWindow.paint_progress_bar = paint_progress_bar_proxy;
 
 GM_registerMenuCommand(
 	"Reset to default settings",
-	() => GM_setValue("config", config),
+	() => {
+		GM_setValue("config", defaultConfig);
+		config.colors = defaultConfig.colors;
+		config.height = defaultConfig.height;
+		config.width = defaultConfig.width;
+		config.x = defaultConfig.x;
+		config.y = defaultConfig.y;
+	},
 	{},
 );
 GM_registerMenuCommand;
