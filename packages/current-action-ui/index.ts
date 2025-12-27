@@ -94,6 +94,15 @@ const menuModal = `
     </div>
   </div>
 
+  <div style="margin-bottom: 15px;">
+    <p style="font-weight: bold; margin-bottom: 10px; color: #333;">Animation Style</p>
+    <select id="animationStyle" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; cursor: pointer;">
+      <option value="smooth" ${config.animation === "smooth" ? "selected" : ""}>Smooth</option>
+      <option value="default" ${config.animation === "default" ? "selected" : ""}>Default</option>
+      <option value="off" ${config.animation === "off" ? "selected" : ""}>Off</option>
+    </select>
+  </div>
+
   <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
     Press Ctrl+Alt+M to toggle
   </div>
@@ -151,6 +160,16 @@ idleStrokeInput?.addEventListener("input", (e) => {
 	handleChangeColor((e.target as HTMLInputElement).value, "idleStrokeColor");
 });
 
+const animationStyleSelect = document.getElementById(
+	"animationStyle",
+) as HTMLSelectElement;
+
+animationStyleSelect?.addEventListener("change", (e) => {
+	const value = (e.target as HTMLSelectElement).value as Config["animation"];
+	config.animation = value;
+	GM_setValue("config", config);
+});
+
 let count = 0;
 let prevProgress = 0;
 const countTickFraction = (() => {
@@ -173,7 +192,7 @@ const getPercent = (animationType: Config["animation"]) => {
 	} else if (animationType === "default") {
 		return progress_bar_at / progress_bar_target;
 	} else if (animationType === "off") {
-		return 100;
+		return 1;
 	}
 };
 
