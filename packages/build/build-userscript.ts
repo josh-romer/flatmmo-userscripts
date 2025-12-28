@@ -1,5 +1,5 @@
 export const buildScript = async (packageName: string) => {
-	const packagePath = `./packages/${packageName}`;
+	const packagePath = `../${packageName}`;
 	const { default: packageJson } = await import(`${packagePath}/package.json`, {
 		with: { type: "jsonc" },
 	});
@@ -7,7 +7,7 @@ export const buildScript = async (packageName: string) => {
 		with: { type: "text" },
 	});
 	return Bun.build({
-		entrypoints: [`${packagePath}/${packageJson.module}`],
+		entrypoints: [`./packages/${packageName}/${packageJson.module}`],
 		banner: metadata,
 		outdir: `./dist/userscripts`,
 		naming: `${packageName}.user.[ext]`,

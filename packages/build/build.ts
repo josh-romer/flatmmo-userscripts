@@ -1,5 +1,5 @@
+import { buildStaticSite } from "../static-userscript-index/build-site";
 import { buildScript } from "./build-userscript";
-import { buildStaticSite } from "./packages/static-userscript-index/build-site";
 
 const packageNames = ["better-custom-hotkeys", "current-action-ui"];
 

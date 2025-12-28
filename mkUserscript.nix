@@ -2,12 +2,11 @@
   bun2nix,
   stdenv,
   packageName,
-  packagePath,
   ...
 }:
 let
-  pkgJsonContents = builtins.readFile "${packagePath}/package.json";
-  package = builtins.fromJSON pkgJsonContents;
+  # pkgJsonContents = builtins.readFile "${packagePath}/package.json";
+  # package = builtins.fromJSON pkgJsonContents;
   pname = packageName;
   version = "1.0.0";
   # inherit (package) version;
@@ -26,7 +25,7 @@ stdenv.mkDerivation {
   };
 
   buildPhase = ''
-    bun build-userscript-cli.ts --scriptName=${packageName}
+    bun ./packages/build/build-userscript-cli.ts --scriptName=${packageName}
   '';
 
   installPhase = ''
