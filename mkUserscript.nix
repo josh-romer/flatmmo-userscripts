@@ -1,16 +1,16 @@
 {
   bun2nix,
   stdenv,
+  packageName,
   packagePath,
   ...
 }:
 let
   pkgJsonContents = builtins.readFile "${packagePath}/package.json";
   package = builtins.fromJSON pkgJsonContents;
-  pname = package.name;
-  inherit (package) version;
-  module = "${packagePath}/${package.module}";
-  metadata = builtins.readFile "${packagePath}/metadata.js";
+  pname = packageName;
+  version = "1.0.0";
+  # inherit (package) version;
 in
 stdenv.mkDerivation {
   inherit pname version;
@@ -26,12 +26,12 @@ stdenv.mkDerivation {
   };
 
   buildPhase = ''
-    bun build ${module} --outfile dist/${pname}.user.js --banner "${metadata}"
+    bun build-userscript-cli.ts --scriptName=${packageName}
   '';
 
   installPhase = ''
-    mkdir -p $out/dist
+    mkdir -p $out/share/userscripts
 
-    cp -R ./dist $out
+    cp ./dist/userscripts/**.js $out/share/userscripts/
   '';
 }

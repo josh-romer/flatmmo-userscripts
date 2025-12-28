@@ -60,14 +60,22 @@
             programs.biome.enable = true;
           };
 
-          packages = {
+          packages = rec {
             # Produce a package for this template with bun2nix in
             # the overlay
-            default = pkgs.callPackage ./mkUserscript.nix {
-              packagePath = ./packages/better-custom-hotkeys;
+            better-custom-hotkeys = pkgs.callPackage ./mkUserscript.nix {
+              packageName = "better-custom-hotkeys";
+              packagePath = "packages/better-custom-hotkeys/";
             };
             current-action-ui = pkgs.callPackage ./mkUserscript.nix {
-              packagePath = ./packages/current-action-ui;
+              packageName = "current-action-ui";
+              packagePath = "packages/current-action-ui";
+            };
+            default = pkgs.callPackage ./mkStaticSite.nix {
+              userscripts = [
+                current-action-ui
+                better-custom-hotkeys
+              ];
             };
 
           };

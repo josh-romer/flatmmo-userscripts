@@ -1,20 +1,22 @@
-const packageName = "better-custom-hotkeys";
+import { buildScript } from "./build-userscript";
+import { buildStaticSite } from "./packages/static-userscript-index/build-site";
 
-await Bun.build({
-	entrypoints: ["./packages/better-custom-hotkeys/index.ts"],
-	banner: `
-// ==UserScript==
-// @name        Better hotkeys
-// @namespace   Violentmonkey Scripts
-// @match       https://flatmmo.com/play.php*
-// @grant       GM_getValue
-// @grant       GM_setValue
-// @version     0.001
-// @author      Joshu
-// @description set the default f key shortcuts to regular keys, sets enter to toggle chat focus istead of always listening.
-// @inject-into page
-// ==/UserScript==
-  `,
-	outdir: "./dist",
-	naming: `${packageName}.user.js`,
-});
+const packageNames = ["better-custom-hotkeys", "current-action-ui"];
+
+const userscriptInfo = packageNames.map((packageName) => ({
+	path: `./dist/userscripts/${packageName}.user.js`,
+	filename: `${packageName}.user.js`,
+	packageName,
+}));
+
+import { rm } from "node:fs/promises";
+
+// Delete a directory and all its contents
+await rm("./dist", { recursive: true, force: true });
+
+await Promise.all(packageNames.map(buildScript));
+
+const time = new Date();
+const result = await buildStaticSite(userscriptInfo);
+console.log(time);
+console.log(result.success);
