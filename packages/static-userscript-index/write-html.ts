@@ -4,6 +4,8 @@ export const addScriptLinksRewriter = (
 ) => {
 	const rewriter = new HTMLRewriter().on("#script-list", {
 		element(ul) {
+			// remove placeholder content
+			ul.setInnerContent("");
 			userscriptPaths.forEach((us) => {
 				ul.append(
 					`
