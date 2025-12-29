@@ -11,7 +11,6 @@
 		"@violentmonkey/types": "^0.3.1",
 		"@workspace/flatmmo-types": "workspace:*",
 		"bun2nix": "^2.0.0",
-		"typescript": "^5.9.3",
-		"wrangler": "^4.54.0"
+		"typescript": "^5.9.3"
 	}
 }
