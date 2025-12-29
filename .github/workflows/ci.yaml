@@ -22,10 +22,8 @@ jobs:
         with:
           name: site
           path: result/static
-      - name: debug
-        run: ls -R; printenv;
       - name: Run `nix shell`
-        run: nix develop --command -- bunx wrangler pages deploy result/static --branch dev
+        run: nix develop --command -- bunx wrangler pages deploy result/static 
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_KEY }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
