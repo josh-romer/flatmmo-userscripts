@@ -27,22 +27,7 @@ jobs:
           # Your Cloudflare Account ID
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy
-          # Supresses output from Wrangler commands, defaults to `false`
-          # quiet: # optional, default is false
-          # The environment you'd like to deploy your Workers project to - must be defined in wrangler.toml
-          # environment: # optional
-          # The relative path which Wrangler commands should be run from
-          # workingDirectory: # optional
+          packageManager: bun
           # The version of Wrangler you'd like to use to deploy your Workers project
           wranglerVersion: 4.54.0 # optional
-          # A string of environment variable names, separated by newlines. These will be bound to your Worker as Secrets and must match the names of environment variables declared in `env` of this workflow.
-          # secrets: # optional
-          # Commands to execute before deploying the Workers project
-          # preCommands: # optional
-          # Commands to execute after deploying the Workers project
-          # postCommands: # optional
-          # The Wrangler command (along with any arguments) you wish to run. Multiple Wrangler commands can be run by separating each command with a newline. Defaults to `"deploy"`.
-          # command: # optional
-    # A string of environment variable names, separated by newlines. These will be bound to your Worker using the values of matching environment variables declared in `env` of this workflow.
-    # vars: # optional
           
