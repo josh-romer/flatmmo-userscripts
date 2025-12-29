@@ -17,6 +17,8 @@ jobs:
       - uses: DeterminateSystems/flake-checker-action@main
       - name: Run `nix build`
         run: nix build .            
+      - name: Run `nix develop`
+        run: nix develop            
       - name: Deploy to Cloudflare Workers with Wrangler
         # You may pin to the exact commit or the version.
         # uses: cloudflare/wrangler-action@c25aadc9657b0cdc4786c04e59a6fe92765a783b
@@ -26,6 +28,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_KEY }}
           # Your Cloudflare Account ID
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          preCommand: nix develop
           command: pages deploy
           packageManager: bun
           # The version of Wrangler you'd like to use to deploy your Workers project
