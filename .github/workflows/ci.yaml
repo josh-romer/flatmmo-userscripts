@@ -26,7 +26,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_KEY }}
           # Your Cloudflare Account ID
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./result/static --project-name=flatmmo-userscripts
+          command: pages deploy result/static --project-name=flatmmo-userscripts
           # Supresses output from Wrangler commands, defaults to `false`
           # quiet: # optional, default is false
           # The environment you'd like to deploy your Workers project to - must be defined in wrangler.toml
