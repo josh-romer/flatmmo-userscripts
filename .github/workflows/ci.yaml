@@ -34,7 +34,7 @@ jobs:
           # The relative path which Wrangler commands should be run from
           # workingDirectory: # optional
           # The version of Wrangler you'd like to use to deploy your Workers project
-          # wranglerVersion: # optional
+          wranglerVersion: 4.54.0 # optional
           # A string of environment variable names, separated by newlines. These will be bound to your Worker as Secrets and must match the names of environment variables declared in `env` of this workflow.
           # secrets: # optional
           # Commands to execute before deploying the Workers project
