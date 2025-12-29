@@ -18,7 +18,7 @@ jobs:
       - name: Run `nix build`
         run: nix build .            
       - name: Run `nix build`
-        run: nix develop --command bunx wrangler pages deploy
+        run: nix develop --command bunx wrangler whoami && bunx wrangler pages deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_KEY }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
