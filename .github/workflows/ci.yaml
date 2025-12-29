@@ -20,7 +20,7 @@ jobs:
       - name: Deploy to Cloudflare Workers with Wrangler
         # You may pin to the exact commit or the version.
         # uses: cloudflare/wrangler-action@c25aadc9657b0cdc4786c04e59a6fe92765a783b
-        uses: cloudflare/wrangler-action@v3.1.0
+        uses: cloudflare/wrangler-action@v3.14.1
         with:
           #Your Cloudflare API Token
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_KEY }}
