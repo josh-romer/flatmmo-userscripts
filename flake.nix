@@ -71,10 +71,15 @@
               packageName = "current-action-ui";
               packagePath = "packages/current-action-ui";
             };
+            chat-space-fix = pkgs.callPackage ./mkUserscript.nix {
+              packageName = "chat-space-fix";
+              packagePath = "packages/chat-space-fix/";
+            };
             default = pkgs.callPackage ./mkStaticSite.nix {
               userscripts = [
                 current-action-ui
                 better-custom-hotkeys
+                chat-space-fix
               ];
             };
 
