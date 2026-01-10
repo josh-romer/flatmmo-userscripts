@@ -72,6 +72,7 @@
 
           treefmt = {
             programs.biome.enable = true;
+            programs.nixfmt.enable = true;
           };
 
           packages = {
