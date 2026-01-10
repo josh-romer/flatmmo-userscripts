@@ -95,6 +95,7 @@
             ];
 
             shellHook = ''
+              export PACKAGESDIR=$(pwd)/packages/
               bun install --frozen-lockfile
             '';
           };

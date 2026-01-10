@@ -4,7 +4,9 @@
 		"packages/*"
 	],
 	"scripts": {
-		"postinstall": "bun2nix -o bun.nix"
+		"postinstall": "bun2nix -o bun.nix",
+		"build-static": "bun run packages/build/build.ts",
+		"dev": "bun run packages/build/dev-watch.ts"
 	},
 	"devDependencies": {
 		"@types/bun": "^1.3.4",
