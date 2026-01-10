@@ -6,6 +6,7 @@ declare function has_npc_chat_message_modal_open(): boolean;
 declare function has_npc_chat_options_modal_open(): boolean;
 declare function has_modal_open(): boolean;
 declare function keypress_listener(): void;
+declare function keydown_listener(): void;
 declare const chat_ele: HTMLInputElement;
 
 declare function paint_progress_bar(): void;
