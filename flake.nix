@@ -48,6 +48,20 @@
           system,
           ...
         }:
+        let
+          userscriptNames = [
+            "better-custom-hotkeys"
+            "current-action-ui"
+            "chat-space-fix"
+          ];
+          mkFromName =
+            packageName:
+            pkgs.callPackage ./mkUserscript.nix {
+              inherit packageName;
+              packagePath = "packages/better-custom-hotkeys/";
+            };
+          userscriptAttrs = pkgs.lib.genAttrs userscriptNames mkFromName;
+        in
         {
           # This sets `pkgs` to a nixpkgs with allowUnfree option set.
           _module.args.pkgs = import nixpkgs {
@@ -60,30 +74,14 @@
             programs.biome.enable = true;
           };
 
-          packages = rec {
+          packages = {
             # Produce a package for this template with bun2nix in
             # the overlay
-            better-custom-hotkeys = pkgs.callPackage ./mkUserscript.nix {
-              packageName = "better-custom-hotkeys";
-              packagePath = "packages/better-custom-hotkeys/";
-            };
-            current-action-ui = pkgs.callPackage ./mkUserscript.nix {
-              packageName = "current-action-ui";
-              packagePath = "packages/current-action-ui";
-            };
-            chat-space-fix = pkgs.callPackage ./mkUserscript.nix {
-              packageName = "chat-space-fix";
-              packagePath = "packages/chat-space-fix/";
-            };
             default = pkgs.callPackage ./mkStaticSite.nix {
-              userscripts = [
-                current-action-ui
-                better-custom-hotkeys
-                chat-space-fix
-              ];
+              userscripts = pkgs.lib.attrValues userscriptAttrs;
             };
-
-          };
+          }
+          // userscriptAttrs;
           devShells.default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
               bun
