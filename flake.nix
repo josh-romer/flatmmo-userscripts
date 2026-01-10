@@ -72,7 +72,10 @@
 
           treefmt = {
             programs.biome.enable = true;
-            programs.nixfmt.enable = true;
+            programs.nixfmt = {
+              enable = true;
+              excludes = [ "bun.nix" ];
+            };
           };
 
           packages = {
