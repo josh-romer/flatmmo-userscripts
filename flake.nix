@@ -97,6 +97,7 @@
             shellHook = ''
               export PACKAGESDIR=$(pwd)/packages/
               export USERSCRIPTS=${builtins.concatStringsSep "," userscriptNames}
+              export BUILD_ENV=dev
               bun install --frozen-lockfile
             '';
           };

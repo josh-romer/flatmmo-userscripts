@@ -2,7 +2,7 @@
 // @name        Chat Leading Space Fix
 // @namespace   Violentmonkey Scripts
 // @match       https://flatmmo.com/play.php*
-// @version     0.00132576
+// @version     VERSION
 // @author      Joshu
 // @description Fix chat with only space.
 // @inject-into page
