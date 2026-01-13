@@ -1,5 +1,5 @@
-import { watch } from "fs";
 import { $ } from "bun";
+import { watch } from "fs";
 
 await $`bun run build-static`; // => "Hello, world!"
 const watchDir = import.meta.env.PACKAGESDIR;

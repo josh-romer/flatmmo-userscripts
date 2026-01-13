@@ -5,6 +5,6 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@violentmonkey/types": "^0.3.1",
-		"@workspace/flatmmo-types": "workspace:*"
+		"flatmmo-types": "workspace:*"
 	}
 }

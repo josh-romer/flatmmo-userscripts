@@ -2,30 +2,39 @@
   bun2nix,
   stdenv,
   packageName,
+  lib,
   ...
 }:
 let
-  # pkgJsonContents = builtins.readFile "${packagePath}/package.json";
-  # package = builtins.fromJSON pkgJsonContents;
+  inherit (lib.fileset) toSource unions;
   pname = packageName;
   version = "1.0.0";
-  # inherit (package) version;
+  build-script = "./packages/build/build-userscript-cli.ts";
 in
 stdenv.mkDerivation {
   inherit pname version;
 
-  src = ./.;
-
+  src = toSource {
+    root = ./.;
+    fileset = unions [
+      ./package.json
+      ./packages
+      ./bun.nix
+      ./bun.lock
+      ./bunfig.toml
+    ];
+  };
   nativeBuildInputs = [
     bun2nix.hook
   ];
+  dontRunLifecycleScripts = true;
 
   bunDeps = bun2nix.fetchBunDeps {
     bunNix = ./bun.nix;
   };
 
   buildPhase = ''
-    bun ./packages/build/build-userscript-cli.ts --scriptName=${packageName}
+    bun  ${build-script} --scriptName=${packageName}
   '';
 
   installPhase = ''

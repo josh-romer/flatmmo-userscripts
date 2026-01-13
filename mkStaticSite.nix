@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (lib.fileset) toSource unions;
   pname = "username-index-site";
   version = "0.0.1";
   userscript-metadata = (
@@ -19,7 +20,16 @@ in
 stdenv.mkDerivation {
   inherit pname version;
 
-  src = ./.;
+  src = toSource {
+    root = ./.;
+    fileset = unions [
+      ./package.json
+      ./packages
+      ./bun.nix
+      ./bun.lock
+      ./bunfig.toml
+    ];
+  };
 
   nativeBuildInputs = [
     bun2nix.hook

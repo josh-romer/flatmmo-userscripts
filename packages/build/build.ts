@@ -2,7 +2,6 @@ import { buildStaticSite } from "../static-userscript-index/build-site";
 import { buildScript } from "./build-userscript";
 
 const packageNames = process.env.USERSCRIPTS?.split(",") ?? [];
-const names = ["better-custom-hotkeys", "current-action-ui", "chat-space-fix"];
 
 const userscriptInfo = packageNames.map((packageName) => ({
 	path: `./dist/userscripts/${packageName}.user.js`,
