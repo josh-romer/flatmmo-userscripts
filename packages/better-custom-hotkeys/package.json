@@ -1,5 +1,5 @@
 {
-	"name": "@workspace/better-custom-hotkeys",
+	"name": "better-custom-hotkeys",
 	"version": "1.0.0",
 	"module": "index.ts",
 	"dependencies": {},

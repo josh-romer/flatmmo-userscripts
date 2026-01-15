@@ -1,5 +1,5 @@
 {
-	"name": "@workspace/current-action-ui",
+	"name": "current-action-ui",
 	"version": "1.0.0",
 	"module": "index.ts",
 	"dependencies": {},

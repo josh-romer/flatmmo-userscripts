@@ -33,10 +33,8 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [
     bun2nix.hook
-  ]
-  ++ userscripts;
+  ];
 
-  buildInputs = userscripts;
 
   bunDeps = bun2nix.fetchBunDeps {
     bunNix = ./bun.nix;
