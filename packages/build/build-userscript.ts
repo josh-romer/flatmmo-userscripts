@@ -48,11 +48,22 @@ const parseGrantsCalled = (scriptText: string) => {
 	// Visit the AST
 	const grants = new Set<string>();
 	const visitor = new Visitor({
-		CallExpression(callExp) {
-			if (callExp.callee.type === "Identifier") {
-				const name = callExp.callee.name;
+		CallExpression({ callee }) {
+			const { type } = callee;
+			if (type === "Identifier") {
+				const name = callee.name;
 				if (name.startsWith("GM")) {
 					grants.add(name);
+				}
+			}
+			if (
+				type === "MemberExpression" &&
+				callee.object.type === "Identifier" &&
+				callee.object.name === "GM"
+			) {
+				const { property } = callee;
+				if (property.type === "Identifier") {
+					grants.add(`GM.${property.name}`);
 				}
 			}
 		},
