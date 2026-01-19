@@ -19,14 +19,6 @@
       "name": "flatmmo-types",
       "version": "0.0.1",
     },
-    "packages/userscripts/better-custom-hotkeys": {
-      "name": "better-custom-hotkeys",
-      "version": "1.0.0",
-      "devDependencies": {
-        "@violentmonkey/types": "^0.3.1",
-        "flatmmo-types": "workspace:*",
-      },
-    },
     "packages/userscripts/chat-space-fix": {
       "name": "chat-space-fix",
       "version": "1.0.0",
@@ -35,8 +27,16 @@
         "flatmmo-types": "workspace:*",
       },
     },
-    "packages/userscripts/current-action-ui": {
-      "name": "current-action-ui",
+    "packages/userscripts/hud-improved": {
+      "name": "hud-improved",
+      "version": "1.0.0",
+      "devDependencies": {
+        "@violentmonkey/types": "^0.3.1",
+        "flatmmo-types": "workspace:*",
+      },
+    },
+    "packages/userscripts/keybinds-improved": {
+      "name": "keybinds-improved",
       "version": "1.0.0",
       "devDependencies": {
         "@violentmonkey/types": "^0.3.1",
@@ -105,19 +105,19 @@
 
     "@violentmonkey/types": ["@violentmonkey/types@0.3.2", "", { "dependencies": { "user-agent-data-types": "^0.4.2" } }, "sha512-SclmkQqyN22upcCsNYoRDh3Tco7YRGXHBThWOSl09YA3fk7DxSi1sKDfm0uVQc+g8wrjfykVxN3Ws7Jh+5ccIg=="],
 
-    "better-custom-hotkeys": ["better-custom-hotkeys@workspace:packages/userscripts/better-custom-hotkeys"],
-
     "bun-types": ["bun-types@1.3.6", "", { "dependencies": { "@types/node": "*" } }, "sha512-OlFwHcnNV99r//9v5IIOgQ9Uk37gZqrNMCcqEaExdkVq3Avwqok1bJFmvGMCkCE0FqzdY8VMOZpfpR3lwI+CsQ=="],
 
     "chat-space-fix": ["chat-space-fix@workspace:packages/userscripts/chat-space-fix"],
-
-    "current-action-ui": ["current-action-ui@workspace:packages/userscripts/current-action-ui"],
 
     "effect": ["effect@3.19.14", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "fast-check": "^3.23.1" } }, "sha512-3vwdq0zlvQOxXzXNKRIPKTqZNMyGCdaFUBfMPqpsyzZDre67kgC1EEHDV4EoQTovJ4w5fmJW756f86kkuz7WFA=="],
 
     "fast-check": ["fast-check@3.23.2", "", { "dependencies": { "pure-rand": "^6.1.0" } }, "sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A=="],
 
     "flatmmo-types": ["flatmmo-types@workspace:packages/lib/flatmmo-types"],
+
+    "hud-improved": ["hud-improved@workspace:packages/userscripts/hud-improved"],
+
+    "keybinds-improved": ["keybinds-improved@workspace:packages/userscripts/keybinds-improved"],
 
     "oxc-parser": ["oxc-parser@0.108.0", "", { "dependencies": { "@oxc-project/types": "^0.108.0" }, "optionalDependencies": { "@oxc-parser/binding-android-arm-eabi": "0.108.0", "@oxc-parser/binding-android-arm64": "0.108.0", "@oxc-parser/binding-darwin-arm64": "0.108.0", "@oxc-parser/binding-darwin-x64": "0.108.0", "@oxc-parser/binding-freebsd-x64": "0.108.0", "@oxc-parser/binding-linux-arm-gnueabihf": "0.108.0", "@oxc-parser/binding-linux-arm-musleabihf": "0.108.0", "@oxc-parser/binding-linux-arm64-gnu": "0.108.0", "@oxc-parser/binding-linux-arm64-musl": "0.108.0", "@oxc-parser/binding-linux-ppc64-gnu": "0.108.0", "@oxc-parser/binding-linux-riscv64-gnu": "0.108.0", "@oxc-parser/binding-linux-riscv64-musl": "0.108.0", "@oxc-parser/binding-linux-s390x-gnu": "0.108.0", "@oxc-parser/binding-linux-x64-gnu": "0.108.0", "@oxc-parser/binding-linux-x64-musl": "0.108.0", "@oxc-parser/binding-openharmony-arm64": "0.108.0", "@oxc-parser/binding-wasm32-wasi": "0.108.0", "@oxc-parser/binding-win32-arm64-msvc": "0.108.0", "@oxc-parser/binding-win32-ia32-msvc": "0.108.0", "@oxc-parser/binding-win32-x64-msvc": "0.108.0" } }, "sha512-eM0GUxQgVZXZxB364HRlakUH8rBxh5E6dN+RiiCLtOk84WgLFbhydULyd2DUJYxguvcbjWUmmKgVDyvVCeplDA=="],
 

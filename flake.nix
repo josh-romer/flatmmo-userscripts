@@ -50,8 +50,8 @@
         }:
         let
           userscriptNames = [
-            "better-custom-hotkeys"
-            "current-action-ui"
+            "keybinds-improved"
+            "hud-improved"
             "chat-space-fix"
           ];
           mkFromName =

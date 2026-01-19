@@ -1,5 +1,5 @@
 {
-	"name": "current-action-ui",
+	"name": "hud-improved",
 	"version": "1.0.0",
 	"module": "index.ts",
 	"dependencies": {},

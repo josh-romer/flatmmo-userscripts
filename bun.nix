@@ -133,13 +133,11 @@
     url = "https://registry.npmjs.org/@violentmonkey/types/-/types-0.3.2.tgz";
     hash = "sha512-SclmkQqyN22upcCsNYoRDh3Tco7YRGXHBThWOSl09YA3fk7DxSi1sKDfm0uVQc+g8wrjfykVxN3Ws7Jh+5ccIg==";
   };
-  "better-custom-hotkeys" = copyPathToStore ./packages/userscripts/better-custom-hotkeys;
   "bun-types@1.3.6" = fetchurl {
     url = "https://registry.npmjs.org/bun-types/-/bun-types-1.3.6.tgz";
     hash = "sha512-OlFwHcnNV99r//9v5IIOgQ9Uk37gZqrNMCcqEaExdkVq3Avwqok1bJFmvGMCkCE0FqzdY8VMOZpfpR3lwI+CsQ==";
   };
   "chat-space-fix" = copyPathToStore ./packages/userscripts/chat-space-fix;
-  "current-action-ui" = copyPathToStore ./packages/userscripts/current-action-ui;
   "effect@3.19.14" = fetchurl {
     url = "https://registry.npmjs.org/effect/-/effect-3.19.14.tgz";
     hash = "sha512-3vwdq0zlvQOxXzXNKRIPKTqZNMyGCdaFUBfMPqpsyzZDre67kgC1EEHDV4EoQTovJ4w5fmJW756f86kkuz7WFA==";
@@ -149,6 +147,8 @@
     hash = "sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==";
   };
   "flatmmo-types" = copyPathToStore ./packages/lib/flatmmo-types;
+  "hud-improved" = copyPathToStore ./packages/userscripts/hud-improved;
+  "keybinds-improved" = copyPathToStore ./packages/userscripts/keybinds-improved;
   "oxc-parser@0.108.0" = fetchurl {
     url = "https://registry.npmjs.org/oxc-parser/-/oxc-parser-0.108.0.tgz";
     hash = "sha512-eM0GUxQgVZXZxB364HRlakUH8rBxh5E6dN+RiiCLtOk84WgLFbhydULyd2DUJYxguvcbjWUmmKgVDyvVCeplDA==";
