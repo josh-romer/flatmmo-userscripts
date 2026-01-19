@@ -1,7 +1,8 @@
 {
 	"name": "flatmmo-userscripts-workspace",
 	"workspaces": [
-		"packages/*"
+		"packages/lib/*",
+		"packages/userscripts/*"
 	],
 	"scripts": {
 		"postinstall": "bun2nix -o bun.nix",

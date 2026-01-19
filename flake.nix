@@ -58,7 +58,7 @@
             packageName:
             pkgs.callPackage ./mkUserscript.nix {
               inherit packageName;
-              packagePath = "packages/better-custom-hotkeys/";
+              packagePath = "packages/userscripts/better-custom-hotkeys/";
             };
           userscriptAttrs = pkgs.lib.genAttrs userscriptNames mkFromName;
         in

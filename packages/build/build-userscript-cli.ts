@@ -36,7 +36,7 @@ const runBuild = async () => {
 await runBuild();
 
 if (dev) {
-	const watchDir = `${import.meta.env.PACKAGESDIR}/${name}`;
+	const watchDir = `${import.meta.env.PACKAGESDIR}/userscripts/${name}`;
 
 	const watcher = watch(
 		watchDir,

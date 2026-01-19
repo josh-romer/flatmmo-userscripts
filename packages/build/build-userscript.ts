@@ -10,13 +10,13 @@ const PackageJson = Schema.Struct({
 	module: Schema.String,
 });
 export const buildScript = async (packageName: string) => {
-	const packagePath = `packages/${packageName}`;
+	const packagePath = `packages/userscripts/${packageName}`;
 	const file: unknown = await Bun.file(`${packagePath}/package.json`).json();
 	const packageInfo = Schema.decodeUnknownSync(PackageJson)(file);
 	if (typeof file !== "object") throw new Error("Must have package.json");
 
 	const bundledScript = await getBundledScript(
-		`./packages/${packageName}/${packageInfo.module}`,
+		`./packages/userscripts/${packageName}/${packageInfo.module}`,
 	);
 
 	// Temp auto versioning

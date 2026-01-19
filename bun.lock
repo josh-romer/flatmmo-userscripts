@@ -15,7 +15,11 @@
         "typescript": "^5.9.3",
       },
     },
-    "packages/better-custom-hotkeys": {
+    "packages/lib/flatmmo-types": {
+      "name": "flatmmo-types",
+      "version": "0.0.1",
+    },
+    "packages/userscripts/better-custom-hotkeys": {
       "name": "better-custom-hotkeys",
       "version": "1.0.0",
       "devDependencies": {
@@ -23,7 +27,7 @@
         "flatmmo-types": "workspace:*",
       },
     },
-    "packages/chat-space-fix": {
+    "packages/userscripts/chat-space-fix": {
       "name": "chat-space-fix",
       "version": "1.0.0",
       "devDependencies": {
@@ -31,17 +35,13 @@
         "flatmmo-types": "workspace:*",
       },
     },
-    "packages/current-action-ui": {
+    "packages/userscripts/current-action-ui": {
       "name": "current-action-ui",
       "version": "1.0.0",
       "devDependencies": {
         "@violentmonkey/types": "^0.3.1",
         "flatmmo-types": "workspace:*",
       },
-    },
-    "packages/flatmmo-types": {
-      "name": "flatmmo-types",
-      "version": "0.0.1",
     },
   },
   "packages": {
@@ -101,23 +101,23 @@
 
     "@types/bun": ["@types/bun@1.3.6", "", { "dependencies": { "bun-types": "1.3.6" } }, "sha512-uWCv6FO/8LcpREhenN1d1b6fcspAB+cefwD7uti8C8VffIv0Um08TKMn98FynpTiU38+y2dUO55T11NgDt8VAA=="],
 
-    "@types/node": ["@types/node@25.0.8", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-powIePYMmC3ibL0UJ2i2s0WIbq6cg6UyVFQxSCpaPxxzAaziRfimGivjdF943sSGV6RADVbk0Nvlm5P/FB44Zg=="],
+    "@types/node": ["@types/node@25.0.9", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-/rpCXHlCWeqClNBwUhDcusJxXYDjZTyE8v5oTO7WbL8eij2nKhUeU89/6xgjU7N4/Vh3He0BtyhJdQbDyhiXAw=="],
 
     "@violentmonkey/types": ["@violentmonkey/types@0.3.2", "", { "dependencies": { "user-agent-data-types": "^0.4.2" } }, "sha512-SclmkQqyN22upcCsNYoRDh3Tco7YRGXHBThWOSl09YA3fk7DxSi1sKDfm0uVQc+g8wrjfykVxN3Ws7Jh+5ccIg=="],
 
-    "better-custom-hotkeys": ["better-custom-hotkeys@workspace:packages/better-custom-hotkeys"],
+    "better-custom-hotkeys": ["better-custom-hotkeys@workspace:packages/userscripts/better-custom-hotkeys"],
 
     "bun-types": ["bun-types@1.3.6", "", { "dependencies": { "@types/node": "*" } }, "sha512-OlFwHcnNV99r//9v5IIOgQ9Uk37gZqrNMCcqEaExdkVq3Avwqok1bJFmvGMCkCE0FqzdY8VMOZpfpR3lwI+CsQ=="],
 
-    "chat-space-fix": ["chat-space-fix@workspace:packages/chat-space-fix"],
+    "chat-space-fix": ["chat-space-fix@workspace:packages/userscripts/chat-space-fix"],
 
-    "current-action-ui": ["current-action-ui@workspace:packages/current-action-ui"],
+    "current-action-ui": ["current-action-ui@workspace:packages/userscripts/current-action-ui"],
 
     "effect": ["effect@3.19.14", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "fast-check": "^3.23.1" } }, "sha512-3vwdq0zlvQOxXzXNKRIPKTqZNMyGCdaFUBfMPqpsyzZDre67kgC1EEHDV4EoQTovJ4w5fmJW756f86kkuz7WFA=="],
 
     "fast-check": ["fast-check@3.23.2", "", { "dependencies": { "pure-rand": "^6.1.0" } }, "sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A=="],
 
-    "flatmmo-types": ["flatmmo-types@workspace:packages/flatmmo-types"],
+    "flatmmo-types": ["flatmmo-types@workspace:packages/lib/flatmmo-types"],
 
     "oxc-parser": ["oxc-parser@0.108.0", "", { "dependencies": { "@oxc-project/types": "^0.108.0" }, "optionalDependencies": { "@oxc-parser/binding-android-arm-eabi": "0.108.0", "@oxc-parser/binding-android-arm64": "0.108.0", "@oxc-parser/binding-darwin-arm64": "0.108.0", "@oxc-parser/binding-darwin-x64": "0.108.0", "@oxc-parser/binding-freebsd-x64": "0.108.0", "@oxc-parser/binding-linux-arm-gnueabihf": "0.108.0", "@oxc-parser/binding-linux-arm-musleabihf": "0.108.0", "@oxc-parser/binding-linux-arm64-gnu": "0.108.0", "@oxc-parser/binding-linux-arm64-musl": "0.108.0", "@oxc-parser/binding-linux-ppc64-gnu": "0.108.0", "@oxc-parser/binding-linux-riscv64-gnu": "0.108.0", "@oxc-parser/binding-linux-riscv64-musl": "0.108.0", "@oxc-parser/binding-linux-s390x-gnu": "0.108.0", "@oxc-parser/binding-linux-x64-gnu": "0.108.0", "@oxc-parser/binding-linux-x64-musl": "0.108.0", "@oxc-parser/binding-openharmony-arm64": "0.108.0", "@oxc-parser/binding-wasm32-wasi": "0.108.0", "@oxc-parser/binding-win32-arm64-msvc": "0.108.0", "@oxc-parser/binding-win32-ia32-msvc": "0.108.0", "@oxc-parser/binding-win32-x64-msvc": "0.108.0" } }, "sha512-eM0GUxQgVZXZxB364HRlakUH8rBxh5E6dN+RiiCLtOk84WgLFbhydULyd2DUJYxguvcbjWUmmKgVDyvVCeplDA=="],
 

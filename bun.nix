@@ -125,21 +125,21 @@
     url = "https://registry.npmjs.org/@types/bun/-/bun-1.3.6.tgz";
     hash = "sha512-uWCv6FO/8LcpREhenN1d1b6fcspAB+cefwD7uti8C8VffIv0Um08TKMn98FynpTiU38+y2dUO55T11NgDt8VAA==";
   };
-  "@types/node@25.0.8" = fetchurl {
-    url = "https://registry.npmjs.org/@types/node/-/node-25.0.8.tgz";
-    hash = "sha512-powIePYMmC3ibL0UJ2i2s0WIbq6cg6UyVFQxSCpaPxxzAaziRfimGivjdF943sSGV6RADVbk0Nvlm5P/FB44Zg==";
+  "@types/node@25.0.9" = fetchurl {
+    url = "https://registry.npmjs.org/@types/node/-/node-25.0.9.tgz";
+    hash = "sha512-/rpCXHlCWeqClNBwUhDcusJxXYDjZTyE8v5oTO7WbL8eij2nKhUeU89/6xgjU7N4/Vh3He0BtyhJdQbDyhiXAw==";
   };
   "@violentmonkey/types@0.3.2" = fetchurl {
     url = "https://registry.npmjs.org/@violentmonkey/types/-/types-0.3.2.tgz";
     hash = "sha512-SclmkQqyN22upcCsNYoRDh3Tco7YRGXHBThWOSl09YA3fk7DxSi1sKDfm0uVQc+g8wrjfykVxN3Ws7Jh+5ccIg==";
   };
-  "better-custom-hotkeys" = copyPathToStore ./packages/better-custom-hotkeys;
+  "better-custom-hotkeys" = copyPathToStore ./packages/userscripts/better-custom-hotkeys;
   "bun-types@1.3.6" = fetchurl {
     url = "https://registry.npmjs.org/bun-types/-/bun-types-1.3.6.tgz";
     hash = "sha512-OlFwHcnNV99r//9v5IIOgQ9Uk37gZqrNMCcqEaExdkVq3Avwqok1bJFmvGMCkCE0FqzdY8VMOZpfpR3lwI+CsQ==";
   };
-  "chat-space-fix" = copyPathToStore ./packages/chat-space-fix;
-  "current-action-ui" = copyPathToStore ./packages/current-action-ui;
+  "chat-space-fix" = copyPathToStore ./packages/userscripts/chat-space-fix;
+  "current-action-ui" = copyPathToStore ./packages/userscripts/current-action-ui;
   "effect@3.19.14" = fetchurl {
     url = "https://registry.npmjs.org/effect/-/effect-3.19.14.tgz";
     hash = "sha512-3vwdq0zlvQOxXzXNKRIPKTqZNMyGCdaFUBfMPqpsyzZDre67kgC1EEHDV4EoQTovJ4w5fmJW756f86kkuz7WFA==";
@@ -148,7 +148,7 @@
     url = "https://registry.npmjs.org/fast-check/-/fast-check-3.23.2.tgz";
     hash = "sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==";
   };
-  "flatmmo-types" = copyPathToStore ./packages/flatmmo-types;
+  "flatmmo-types" = copyPathToStore ./packages/lib/flatmmo-types;
   "oxc-parser@0.108.0" = fetchurl {
     url = "https://registry.npmjs.org/oxc-parser/-/oxc-parser-0.108.0.tgz";
     hash = "sha512-eM0GUxQgVZXZxB364HRlakUH8rBxh5E6dN+RiiCLtOk84WgLFbhydULyd2DUJYxguvcbjWUmmKgVDyvVCeplDA==";
