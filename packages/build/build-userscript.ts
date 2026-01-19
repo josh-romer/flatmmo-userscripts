@@ -37,9 +37,10 @@ export const buildScript = async (packageName: string) => {
 
 ${bundledScript}
 	`;
-	console.log(finalScript);
 
-	Bun.write(`./dist/userscripts/${packageName}.user.js`, finalScript);
+	const scriptDest = `./dist/userscripts/${packageName}.user.js`;
+	await Bun.write(scriptDest, finalScript);
+	return scriptDest;
 };
 
 const parseGrantsCalled = (scriptText: string) => {

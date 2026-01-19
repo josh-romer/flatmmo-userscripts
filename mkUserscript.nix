@@ -34,7 +34,7 @@ stdenv.mkDerivation {
   };
 
   buildPhase = ''
-    bun  ${build-script} --scriptName=${packageName}
+    bun  ${build-script} ${packageName}
   '';
 
   installPhase = ''
