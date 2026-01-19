@@ -49,11 +49,8 @@
           ...
         }:
         let
-          userscriptNames = [
-            "keybinds-improved"
-            "hud-improved"
-            "chat-space-fix"
-          ];
+          # fetch scripts dynamically based on dir location. May need a stricter/more correct check
+          userscriptNames = builtins.attrNames (inputs.nixpkgs.lib.filterAttrs (n: v: v == "directory") (builtins.readDir ./packages/userscripts));
           mkFromName =
             packageName:
             pkgs.callPackage ./mkUserscript.nix {
