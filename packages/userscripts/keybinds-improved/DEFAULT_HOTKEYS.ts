@@ -174,7 +174,7 @@ export const DEFAULT_HOTKEYS: hotkey[] = [
 	{
 		action: "auto_hell_burying",
 		hotkey: {
-			key: "f",
+			key: "b",
 			altKey: false,
 			ctrlKey: true,
 			metaKey: false,
@@ -185,6 +185,16 @@ export const DEFAULT_HOTKEYS: hotkey[] = [
 		action: "teleport_jafa_outpost",
 		hotkey: {
 			key: "j",
+			altKey: false,
+			ctrlKey: true,
+			metaKey: false,
+			shiftKey: false,
+		},
+	},
+	{
+		action: "teleport_frostvale",
+		hotkey: {
+			key: "f",
 			altKey: false,
 			ctrlKey: true,
 			metaKey: false,

@@ -34,7 +34,8 @@ export type actions = {
 	teleport_dock_haven: actionProperties;
 	auto_hell_burying: actionProperties;
 	teleport_jafa_outpost: actionProperties;
-	hunting_contact: actionProperties;
+	teleport_frostvale: actionProperties;
+	hunting_contact: actionProperties; // typo matches the spelling from game
 	mass_pickup: actionProperties;
 };
 

@@ -54,67 +54,73 @@ export const ACTIONS: actions = {
 
 	teleport_everbrook: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=teleport_everbrook",
 	},
 
 	remote_sell: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=remote_sell",
 	},
 
 	dig: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=dig",
 	},
 
 	teleport_mysticvale: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=teleport_mysticvale",
 	},
 
 	timers: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=timers",
 	},
 
 	teleport_omboko: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=teleport_omboko",
 	},
 
 	teleport_dock_haven: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=teleport_dock_haven",
 	},
 
 	auto_hell_burying: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=auto_hell_burying",
 	},
 
 	teleport_jafa_outpost: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=teleport_jafa_outpost",
+	},
+
+	teleport_frostvale: {
+		originalKey: "N/A",
+		description: "Worship skill, originally no hotkey",
+		socketCommand: "USE_WORSHIP=teleport_frostvale",
 	},
 
 	hunting_contact: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=hunting_contact",
 	},
 
 	mass_pickup: {
 		originalKey: "N/A",
-		description: "Badge - Right click a badge and click the 'set key binding'",
+		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=mass_pickup",
 	},
 };
