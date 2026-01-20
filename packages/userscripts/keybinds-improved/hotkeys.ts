@@ -1,6 +1,6 @@
 import { DEFAULT_HOTKEYS } from "./DEFAULT_HOTKEYS";
 
-interface keypress {
+export interface keypress {
 	key: string;
 	altKey: boolean;
 	ctrlKey: boolean;
@@ -39,7 +39,9 @@ export type actions = {
 	mass_pickup: actionProperties;
 };
 
-export interface hotkey {
+export type HotkeyMap = Record<keyof actions, keypress>;
+
+export interface Hotkey {
 	action: keyof actions;
 	hotkey: keypress;
 }
@@ -49,36 +51,41 @@ export const keypressToHashableString = (keypress: keypress) => {
 };
 
 if (GM_getValue("hotkeys", null) === null) {
-	GM_setValue("hotkeys", []);
+	GM_setValue("hotkeys", {});
 }
-const usersHotkeys = GM_getValue("hotkeys", DEFAULT_HOTKEYS);
 
-export const mergeHotkeys = () => {
-	const usersActions = new Set(usersHotkeys.map((x) => x.action));
-	const unsetDefaultKeys = DEFAULT_HOTKEYS.filter(
-		(x) => !usersActions.has(x.action),
-	);
-	return [...usersHotkeys, ...unsetDefaultKeys];
+let usersHotkeys: Partial<HotkeyMap> = GM_getValue("hotkeys", {});
+
+export const mergeHotkeys = (): HotkeyMap => {
+	return { ...DEFAULT_HOTKEYS, ...usersHotkeys };
 };
 
-const hotkeys = mergeHotkeys();
+const hashKeymap = () => {
+	return Object.entries(mergeHotkeys()).reduce<Record<string, Hotkey>>(
+		(result, [action, kp]) => {
+			const hashed = keypressToHashableString(kp);
+			result[hashed] = { action: action as keyof actions, hotkey: kp };
+			return result;
+		},
+		{},
+	);
+};
 
-export const hashedHotkeyMap = hotkeys.reduce<Record<string, hotkey>>(
-	(result, hotkey) => {
-		const hashed = keypressToHashableString(hotkey.hotkey);
-		result[hashed] = hotkey;
-		return result;
-	},
-	{},
-);
+export let hashedHotkeyMap = hashKeymap();
 
-export const hashableStringToKeypress = (str: string) => {
+export const setHotkeys = (updatedHotkeys: Partial<HotkeyMap>) => {
+	usersHotkeys = { ...usersHotkeys, ...updatedHotkeys };
+	GM.setValue("hotkeys", usersHotkeys);
+	hashedHotkeyMap = hashKeymap();
+};
+
+export const hashableStringToKeypress = (str: string): keypress => {
 	const [key, altKey, ctrlKey, metaKey, shiftKey] = str.split("-");
 	return {
 		key,
-		altKey,
-		ctrlKey,
-		metaKey,
-		shiftKey,
+		altKey: altKey === "true",
+		ctrlKey: ctrlKey === "true",
+		metaKey: metaKey === "true",
+		shiftKey: shiftKey === "true",
 	};
 };

@@ -1,224 +1,158 @@
-import type { hotkey } from "./hotkeys";
+import type { actions, keypress } from "./hotkeys";
 
-export const DEFAULT_HOTKEYS: hotkey[] = [
-	{
-		action: "run",
-		hotkey: {
-			key: "r",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+export const DEFAULT_HOTKEYS: Record<keyof actions, keypress> = {
+	run: {
+		key: "r",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "eat",
-		hotkey: {
-			key: "f",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	eat: {
+		key: "f",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "lightFire",
-		hotkey: {
-			key: "4",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	lightFire: {
+		key: "4",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "equip1",
-		hotkey: {
-			key: "1",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	equip1: {
+		key: "1",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "equip2",
-		hotkey: {
-			key: "2",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	equip2: {
+		key: "2",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "equip3",
-		hotkey: {
-			key: "3",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	equip3: {
+		key: "3",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "badge1",
-		hotkey: {
-			key: "a",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	badge1: {
+		key: "a",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "badge2",
-		hotkey: {
-			key: "s",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	badge2: {
+		key: "s",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "badge3",
-		hotkey: {
-			key: "d",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	badge3: {
+		key: "d",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "badge4",
-		hotkey: {
-			key: "v",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	badge4: {
+		key: "v",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "teleport_everbrook",
-		hotkey: {
-			key: "e",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	teleport_everbrook: {
+		key: "e",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "remote_sell",
-		hotkey: {
-			key: "s",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	remote_sell: {
+		key: "s",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "dig",
-		hotkey: {
-			key: "l",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	dig: {
+		key: "l",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "teleport_mysticvale",
-		hotkey: {
-			key: "m",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	teleport_mysticvale: {
+		key: "m",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "timers",
-		hotkey: {
-			key: "0",
-			altKey: false,
-			ctrlKey: false,
-			metaKey: false,
-			shiftKey: false,
-		},
+	timers: {
+		key: "0",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "teleport_omboko",
-		hotkey: {
-			key: "o",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	teleport_omboko: {
+		key: "o",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "teleport_dock_haven",
-		hotkey: {
-			key: "d",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	teleport_dock_haven: {
+		key: "d",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "auto_hell_burying",
-		hotkey: {
-			key: "b",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	auto_hell_burying: {
+		key: "b",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "teleport_jafa_outpost",
-		hotkey: {
-			key: "j",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	teleport_jafa_outpost: {
+		key: "j",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "teleport_frostvale",
-		hotkey: {
-			key: "f",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	teleport_frostvale: {
+		key: "f",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "hunting_contact",
-		hotkey: {
-			key: "h",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	hunting_contact: {
+		key: "h",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-	{
-		action: "mass_pickup",
-		hotkey: {
-			key: "p",
-			altKey: false,
-			ctrlKey: true,
-			metaKey: false,
-			shiftKey: false,
-		},
+	mass_pickup: {
+		key: "p",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
 	},
-];
+};
