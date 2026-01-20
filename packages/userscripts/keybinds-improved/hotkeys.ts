@@ -35,7 +35,7 @@ export type actions = {
 	auto_hell_burying: actionProperties;
 	teleport_jafa_outpost: actionProperties;
 	teleport_frostvale: actionProperties;
-	hunting_contact: actionProperties; // typo matches the spelling from game
+	hunting_contact: actionProperties;
 	mass_pickup: actionProperties;
 };
 
@@ -49,10 +49,19 @@ export const keypressToHashableString = (keypress: keypress) => {
 };
 
 if (GM_getValue("hotkeys", null) === null) {
-	GM_setValue("hotkeys", DEFAULT_HOTKEYS);
+	GM_setValue("hotkeys", []);
 }
+const usersHotkeys = GM_getValue("hotkeys", DEFAULT_HOTKEYS);
 
-const hotkeys = GM_getValue("hotkeys", DEFAULT_HOTKEYS);
+export const mergeHotkeys = () => {
+	const usersActions = new Set(usersHotkeys.map((x) => x.action));
+	const unsetDefaultKeys = DEFAULT_HOTKEYS.filter(
+		(x) => !usersActions.has(x.action),
+	);
+	return [...usersHotkeys, ...unsetDefaultKeys];
+};
+
+const hotkeys = mergeHotkeys();
 
 export const hashedHotkeyMap = hotkeys.reduce<Record<string, hotkey>>(
 	(result, hotkey) => {

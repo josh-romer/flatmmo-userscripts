@@ -1,5 +1,6 @@
 import { ACTIONS } from "./ACTIONS";
 import { hashedHotkeyMap, keypressToHashableString } from "./hotkeys";
+import { toggleModal } from "./settings";
 
 //can be from canvas or chat input
 const focusOrSendChat = () => {
@@ -118,5 +119,6 @@ const hotkeyListener = (e: KeyboardEvent) => {
 	}
 };
 
+GM.registerMenuCommand("Toggle Settings menu", toggleModal);
 window.removeEventListener("keypress", keypress_listener);
 window.addEventListener("keydown", hotkeyListener, false);
