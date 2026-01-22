@@ -21,7 +21,7 @@ export const buildScript = async (packageName: string) => {
 
 	// Temp auto versioning
 	const defaultMetadataValues: ViolentmonkeyMetadata = {
-		name: packageInfo.name
+		name: `FlatMMO ${packageInfo.name}`
 			.replaceAll("-", " ")
 			.split(" ")
 			.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
