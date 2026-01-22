@@ -105,9 +105,10 @@ const createModalStyles = (): HTMLStyleElement => {
 		}
 
 		.hotkey-item {
-			display: flex;
-			justify-content: space-between;
+			display: grid;
+			grid-template-columns: 1fr auto;
 			align-items: center;
+			gap: 12px;
 			padding: 8px 12px;
 			border: 1px solid #333;
 			border-radius: 4px;
@@ -119,7 +120,9 @@ const createModalStyles = (): HTMLStyleElement => {
 		}
 
 		.hotkey-action {
-			flex: 1;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		.hotkey-key {
