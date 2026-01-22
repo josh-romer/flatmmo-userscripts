@@ -31,6 +31,28 @@ const formatActionName = (action: string): string => {
 	return action.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 };
 
+const CATEGORIES: Record<string, (keyof actions)[]> = {
+	"Basic Actions": ["run", "eat", "lightFire"],
+	Equipment: ["equip1", "equip2", "equip3"],
+	Badges: ["badge1", "badge2", "badge3", "badge4"],
+	Teleports: [
+		"teleport_everbrook",
+		"teleport_mysticvale",
+		"teleport_omboko",
+		"teleport_dock_haven",
+		"teleport_jafa_outpost",
+		"teleport_frostvale",
+	],
+	"Worship Skills": [
+		"remote_sell",
+		"dig",
+		"timers",
+		"auto_hell_burying",
+		"hunting_contact",
+		"mass_pickup",
+	],
+};
+
 const createModalStyles = (): HTMLStyleElement => {
 	const style = document.createElement("style");
 	style.textContent = `
@@ -38,13 +60,13 @@ const createModalStyles = (): HTMLStyleElement => {
 			position: fixed;
 			top: 0;
 			left: 0;
-			width: 100%;
-			height: 100%;
+			width: 100vw;
+			height: 100vh;
 			background: rgba(0, 0, 0, 0.7);
 			display: none;
 			justify-content: center;
-			align-items: center;
 			z-index: 10000;
+			padding-top: 5vh;
 		}
 
 		#hotkeys-modal-overlay.visible {
@@ -55,11 +77,13 @@ const createModalStyles = (): HTMLStyleElement => {
 			background: #1a1a2e;
 			border: 2px solid #4a4a6a;
 			border-radius: 8px;
-			max-width: 850px;
+			max-width: 1000px;
 			max-height: 80vh;
 			width: 90%;
 			overflow: hidden;
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+			height: fit-content;
+			padding-bottom: 20px;
 		}
 
 		#hotkeys-modal-header {
@@ -97,11 +121,54 @@ const createModalStyles = (): HTMLStyleElement => {
 			padding: 16px;
 		}
 
+		.hotkey-category {
+			font-size: 16px;
+			font-weight: 600;
+			color: #e0e0e0;
+			padding: 12px 0 8px 0;
+			border-bottom: 2px solid #4a4a6a;
+			margin-bottom: 8px;
+		}
+
 		#hotkeys-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			color: #e0e0e0;
+		}
+
+		.category-section {
+			display: contents;
+		}
+
+		.category-section.full-width {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.small-categories-row {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 16px;
+		}
+
+		.small-category-container {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.full-width .items-grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 			gap: 8px;
-			color: #e0e0e0;
+		}
+
+		.small-category-container .items-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
 		}
 
 		.hotkey-item {
@@ -117,12 +184,6 @@ const createModalStyles = (): HTMLStyleElement => {
 
 		.hotkey-item:hover {
 			background: #252540;
-		}
-
-		.hotkey-action {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
 		}
 
 		.hotkey-key {
@@ -302,34 +363,96 @@ const createModal = (): HTMLDivElement => {
 
 	const hotkeys = mergeHotkeys();
 
-	for (const [action, kp] of Object.entries(hotkeys) as [
-		keyof actions,
-		keypress,
-	][]) {
-		const actionInfo = ACTIONS[action];
-		if (!actionInfo) continue;
+	// Group categories by size
+	const smallCategories: [string, (keyof actions)[]][] = [];
+	const largeCategories: [string, (keyof actions)[]][] = [];
 
-		const item = document.createElement("div");
-		item.className = "hotkey-item";
+	for (const [categoryName, categoryActions] of Object.entries(CATEGORIES)) {
+		if (categoryActions.length <= 4) {
+			smallCategories.push([categoryName, categoryActions]);
+		} else {
+			largeCategories.push([categoryName, categoryActions]);
+		}
+	}
 
-		const actionName = document.createElement("span");
-		actionName.className = "hotkey-action";
-		actionName.textContent = formatActionName(action);
+	// Helper function to create category items
+	const createCategoryItems = (
+		categoryActions: (keyof actions)[],
+	): HTMLElement[] => {
+		const items: HTMLElement[] = [];
+		for (const action of categoryActions) {
+			const kp = hotkeys[action];
+			const actionInfo = ACTIONS[action];
+			if (!actionInfo || !kp) continue;
 
-		const hotkeySpan = document.createElement("span");
-		hotkeySpan.className = "hotkey-key";
-		hotkeySpan.textContent = formatKeypress(kp);
-		hotkeySpan.dataset.action = action;
+			const item = document.createElement("div");
+			item.className = "hotkey-item";
 
-		allSpans.push(hotkeySpan);
+			const actionName = document.createElement("span");
+			actionName.className = "hotkey-action";
+			actionName.textContent = formatActionName(action);
 
-		hotkeySpan.addEventListener("click", () => {
-			startRecording(hotkeySpan, action);
-		});
+			const hotkeySpan = document.createElement("span");
+			hotkeySpan.className = "hotkey-key";
+			hotkeySpan.textContent = formatKeypress(kp);
+			hotkeySpan.dataset.action = action;
 
-		item.appendChild(actionName);
-		item.appendChild(hotkeySpan);
-		grid.appendChild(item);
+			allSpans.push(hotkeySpan);
+
+			hotkeySpan.addEventListener("click", () => {
+				startRecording(hotkeySpan, action);
+			});
+
+			item.appendChild(actionName);
+			item.appendChild(hotkeySpan);
+			items.push(item);
+		}
+		return items;
+	};
+
+	// Add small categories in a row
+	if (smallCategories.length > 0) {
+		const smallCategoriesRow = document.createElement("div");
+		smallCategoriesRow.className = "small-categories-row";
+
+		for (const [categoryName, categoryActions] of smallCategories) {
+			const container = document.createElement("div");
+			container.className = "small-category-container";
+
+			const categoryHeader = document.createElement("div");
+			categoryHeader.className = "hotkey-category";
+			categoryHeader.textContent = categoryName;
+			container.appendChild(categoryHeader);
+
+			const itemsGrid = document.createElement("div");
+			itemsGrid.className = "items-grid";
+			const items = createCategoryItems(categoryActions);
+			items.forEach((item) => itemsGrid.appendChild(item));
+			container.appendChild(itemsGrid);
+
+			smallCategoriesRow.appendChild(container);
+		}
+
+		grid.appendChild(smallCategoriesRow);
+	}
+
+	// Add large categories
+	for (const [categoryName, categoryActions] of largeCategories) {
+		const section = document.createElement("div");
+		section.className = "category-section full-width";
+
+		const categoryHeader = document.createElement("div");
+		categoryHeader.className = "hotkey-category";
+		categoryHeader.textContent = categoryName;
+		section.appendChild(categoryHeader);
+
+		const itemsGrid = document.createElement("div");
+		itemsGrid.className = "items-grid";
+		const items = createCategoryItems(categoryActions);
+		items.forEach((item) => itemsGrid.appendChild(item));
+		section.appendChild(itemsGrid);
+
+		grid.appendChild(section);
 	}
 
 	updateConflicts();
