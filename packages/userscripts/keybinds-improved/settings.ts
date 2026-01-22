@@ -97,27 +97,29 @@ const createModalStyles = (): HTMLStyleElement => {
 			padding: 16px;
 		}
 
-		#hotkeys-table {
-			width: 100%;
-			border-collapse: collapse;
+		#hotkeys-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 8px;
 			color: #e0e0e0;
 		}
 
-		#hotkeys-table th {
-			text-align: left;
+		.hotkey-item {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
 			padding: 8px 12px;
-			background: #252540;
-			border-bottom: 2px solid #4a4a6a;
-			font-weight: 600;
+			border: 1px solid #333;
+			border-radius: 4px;
+			transition: background 0.15s ease;
 		}
 
-		#hotkeys-table td {
-			padding: 8px 12px;
-			border-bottom: 1px solid #333;
+		.hotkey-item:hover {
+			background: #252540;
 		}
 
-		#hotkeys-table tr:hover td {
-			background: #252540;
+		.hotkey-action {
+			flex: 1;
 		}
 
 		.hotkey-key {
@@ -145,15 +147,6 @@ const createModalStyles = (): HTMLStyleElement => {
 		.hotkey-key.conflict {
 			background: #4a2a2a;
 			border-color: #c55;
-		}
-
-		#hotkeys-table td:nth-child(2) {
-			min-width: 140px;
-		}
-
-		.hotkey-description {
-			color: #999;
-			font-size: 12px;
 		}
 	`;
 	return style;
@@ -301,19 +294,9 @@ const createModal = (): HTMLDivElement => {
 	const content = document.createElement("div");
 	content.id = "hotkeys-modal-content";
 
-	const table = document.createElement("table");
-	table.id = "hotkeys-table";
+	const grid = document.createElement("div");
+	grid.id = "hotkeys-grid";
 
-	const thead = document.createElement("thead");
-	thead.innerHTML = `
-		<tr>
-			<th>Action</th>
-			<th>Hotkey</th>
-			<th>Description</th>
-		</tr>
-	`;
-
-	const tbody = document.createElement("tbody");
 	const hotkeys = mergeHotkeys();
 
 	for (const [action, kp] of Object.entries(hotkeys) as [
@@ -323,12 +306,13 @@ const createModal = (): HTMLDivElement => {
 		const actionInfo = ACTIONS[action];
 		if (!actionInfo) continue;
 
-		const row = document.createElement("tr");
+		const item = document.createElement("div");
+		item.className = "hotkey-item";
 
-		const actionCell = document.createElement("td");
-		actionCell.textContent = formatActionName(action);
+		const actionName = document.createElement("span");
+		actionName.className = "hotkey-action";
+		actionName.textContent = formatActionName(action);
 
-		const hotkeyCell = document.createElement("td");
 		const hotkeySpan = document.createElement("span");
 		hotkeySpan.className = "hotkey-key";
 		hotkeySpan.textContent = formatKeypress(kp);
@@ -340,23 +324,14 @@ const createModal = (): HTMLDivElement => {
 			startRecording(hotkeySpan, action);
 		});
 
-		hotkeyCell.appendChild(hotkeySpan);
-
-		const descCell = document.createElement("td");
-		descCell.className = "hotkey-description";
-		descCell.textContent = actionInfo.description;
-
-		row.appendChild(actionCell);
-		row.appendChild(hotkeyCell);
-		row.appendChild(descCell);
-		tbody.appendChild(row);
+		item.appendChild(actionName);
+		item.appendChild(hotkeySpan);
+		grid.appendChild(item);
 	}
 
 	updateConflicts();
 
-	table.appendChild(thead);
-	table.appendChild(tbody);
-	content.appendChild(table);
+	content.appendChild(grid);
 
 	modal.appendChild(header);
 	modal.appendChild(content);
