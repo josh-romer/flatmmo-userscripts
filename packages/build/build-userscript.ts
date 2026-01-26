@@ -1,4 +1,6 @@
 import { parseSync, Visitor } from "oxc-parser";
+import { SolidPlugin } from "bun-plugin-solid";
+
 import { Schema } from "effect";
 import {
 	generateMetadataString,
@@ -76,7 +78,14 @@ const parseGrantsCalled = (scriptText: string) => {
 const getBundledScript = async (entrypoint: string) => {
 	const bundled = await Bun.build({
 		entrypoints: [entrypoint],
+		plugins: [SolidPlugin({ generate: "dom", hydratable: false })],
 	});
 
-	return await bundled.outputs[0].text();
+	const css = bundled.outputs.filter((x) => x.path.endsWith(".css")).pop();
+	const js = await bundled.outputs[0].text();
+	if (css) {
+		const injectCSS = `const cssString = \`${await css.text()}\`;\nGM.addStyle(cssString);`;
+		return [js, injectCSS].join("\n\n");
+	}
+	return js;
 };

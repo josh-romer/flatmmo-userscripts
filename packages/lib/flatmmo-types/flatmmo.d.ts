@@ -8,6 +8,11 @@ declare function has_modal_open(): boolean;
 declare function keypress_listener(): void;
 declare function keydown_listener(): void;
 declare const chat_ele: HTMLInputElement;
+declare function server_command(
+	key: string,
+	values: unknown,
+	raw_data: unknown,
+): void;
 
 declare function paint_progress_bar(): void;
 declare let progress_bar_active: boolean;
@@ -30,6 +35,19 @@ interface player {
 	username: string;
 	client_x: number;
 	client_y: number;
+	x: number;
+	y: number;
+	level: number;
+	hp: number;
+}
+interface npc {
+	name: string;
+	client_x: number;
+	client_y: number;
+	x: number;
+	y: number;
+	in_combat: boolean;
+	hp: number;
 }
 
 interface mouseOver {
@@ -42,5 +60,6 @@ interface mouseOver {
 declare const mouse_over_now: mouseOver;
 
 declare const players: player[];
+declare const npcs: npc[];
 
 declare const Globals: Globals;

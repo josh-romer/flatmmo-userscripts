@@ -1,0 +1,23 @@
+.App {
+  text-align: start;
+}
+
+.header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* font-size: calc(10px + 2vmin); */
+  color: white;
+}
+
+.link {
+  color: #b318f0;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  padding: 25px;
+}
