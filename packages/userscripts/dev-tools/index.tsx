@@ -1,6 +1,6 @@
 /* @refresh reload */
 
-import { createSignal, For, type Component } from "solid-js";
+import { type Component, createSignal, For } from "solid-js";
 import { render } from "solid-js/web";
 // import cssString from "./App.module.css" with { type: "text" };
 import styles from "./App.module.css";

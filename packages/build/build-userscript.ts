@@ -1,7 +1,6 @@
-import { parseSync, Visitor } from "oxc-parser";
 import { SolidPlugin } from "bun-plugin-solid";
-
 import { Schema } from "effect";
+import { parseSync, Visitor } from "oxc-parser";
 import {
 	generateMetadataString,
 	type ViolentmonkeyMetadata,

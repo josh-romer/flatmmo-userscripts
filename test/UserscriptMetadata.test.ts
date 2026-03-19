@@ -1,4 +1,4 @@
-import { test, expect, describe } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import {
 	generateMetadataString,
 	type ViolentmonkeyMetadata,
@@ -94,7 +94,9 @@ describe("generateMetadataString", () => {
 
 		const result = generateMetadataString(metadata);
 
-		expect(result).toContain("// @resource     logo https://example.com/logo.png");
+		expect(result).toContain(
+			"// @resource     logo https://example.com/logo.png",
+		);
 		expect(result).toContain(
 			"// @resource     config https://example.com/config.json",
 		);
@@ -272,7 +274,7 @@ describe("generateMetadataString", () => {
 				// After //, there should be exactly one space
 				expect(line.match(/^\/\/ /)).toBeTruthy();
 				// Should not have multiple spaces after //
-				expect(line.match(/^\/\/  /)).toBeFalsy();
+				expect(line.match(/^\/\/ {2}/)).toBeFalsy();
 			});
 		});
 

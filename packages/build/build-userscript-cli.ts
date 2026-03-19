@@ -1,6 +1,6 @@
+import { watch } from "fs";
 import { parseArgs } from "util";
 import { buildScript } from "./build-userscript";
-import { watch } from "fs";
 
 const { values, positionals } = parseArgs({
 	args: Bun.argv,

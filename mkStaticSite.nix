@@ -35,7 +35,6 @@ stdenv.mkDerivation {
     bun2nix.hook
   ];
 
-
   bunDeps = bun2nix.fetchBunDeps {
     bunNix = ./bun.nix;
   };

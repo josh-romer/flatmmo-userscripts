@@ -1,22 +1,22 @@
 .App {
-  text-align: start;
+	text-align: start;
 }
 
 .header {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  /* font-size: calc(10px + 2vmin); */
-  color: white;
+	background-color: #282c34;
+	display: flex;
+	flex-direction: column;
+	/* font-size: calc(10px + 2vmin); */
+	color: white;
 }
 
 .link {
-  color: #b318f0;
+	color: #b318f0;
 }
 
 .columns {
-  display: flex;
-  flex-direction: row;
-  gap: 25px;
-  padding: 25px;
+	display: flex;
+	flex-direction: row;
+	gap: 25px;
+	padding: 25px;
 }

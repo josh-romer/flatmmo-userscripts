@@ -1,10 +1,10 @@
 import { ACTIONS } from "./ACTIONS";
 import {
+	type actions,
+	type keypress,
+	keypressToHashableString,
 	mergeHotkeys,
 	setHotkeys,
-	keypressToHashableString,
-	type keypress,
-	type actions,
 } from "./hotkeys";
 
 const formatKeypress = (kp: keypress): string => {
