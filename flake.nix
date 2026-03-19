@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
 
-    bun2nix.url = "github:nix-community/bun2nix/2.0.6";
+    bun2nix.url = "github:nix-community/bun2nix";
     bun2nix.inputs.nixpkgs.follows = "nixpkgs";
     bun2nix.inputs.systems.follows = "systems";
 

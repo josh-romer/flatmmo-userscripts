@@ -37,6 +37,8 @@ stdenv.mkDerivation {
     bun  ${build-script} ${packageName}
   '';
 
+  bunInstallFlags = "--backend=hardlink";
+
   installPhase = ''
     mkdir -p $out/share/userscripts
 
