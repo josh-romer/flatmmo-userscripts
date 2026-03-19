@@ -155,4 +155,18 @@ export const DEFAULT_HOTKEYS: Record<keyof actions, keypress> = {
 		metaKey: false,
 		shiftKey: false,
 	},
+	focus: {
+		key: "k",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
+	},
+	clarity: {
+		key: "c",
+		altKey: false,
+		ctrlKey: true,
+		metaKey: false,
+		shiftKey: false,
+	},
 };

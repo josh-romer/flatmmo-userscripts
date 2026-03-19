@@ -37,6 +37,8 @@ export type actions = {
 	teleport_frostvale: actionProperties;
 	hunting_contact: actionProperties;
 	mass_pickup: actionProperties;
+	focus: actionProperties;
+	clarity: actionProperties;
 };
 
 export type HotkeyMap = Record<keyof actions, keypress>;

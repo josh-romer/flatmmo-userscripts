@@ -123,4 +123,14 @@ export const ACTIONS: actions = {
 		description: "Worship skill, originally no hotkey",
 		socketCommand: "USE_WORSHIP=mass_pickup",
 	},
+	focus: {
+		originalKey: "N/A",
+		description: "Worship skill, originally no hotkey",
+		socketCommand: "USE_WORSHIP=focus",
+	},
+	clarity: {
+		originalKey: "N/A",
+		description: "Worship skill, originally no hotkey",
+		socketCommand: "USE_WORSHIP=clarity",
+	},
 };

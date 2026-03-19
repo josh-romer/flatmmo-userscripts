@@ -50,6 +50,8 @@ const CATEGORIES: Record<string, (keyof actions)[]> = {
 		"auto_hell_burying",
 		"hunting_contact",
 		"mass_pickup",
+		"focus",
+		"clarity",
 	],
 };
 
