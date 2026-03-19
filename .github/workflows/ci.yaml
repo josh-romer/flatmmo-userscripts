@@ -18,7 +18,7 @@ jobs:
       - run: nix build
       # - run: nix flake check
       - name: Upload static site artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site
           path: result/static
