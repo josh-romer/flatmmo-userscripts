@@ -1,0 +1,22 @@
+import { buildStaticSite } from "../static-userscript-index/build-site";
+import { buildScript } from "./build-userscript";
+
+const packageNames = process.env.USERSCRIPTS?.split(",") ?? [];
+
+const userscriptInfo = packageNames.map((packageName) => ({
+	path: `./dist/userscripts/${packageName}.user.js`,
+	filename: `${packageName}.user.js`,
+	packageName,
+}));
+
+import { rm } from "node:fs/promises";
+
+// Delete a directory and all its contents
+await rm("./dist", { recursive: true, force: true });
+
+await Promise.all(packageNames.map(buildScript));
+
+const time = new Date();
+const result = await buildStaticSite(userscriptInfo);
+console.log(time);
+console.log(result.success);

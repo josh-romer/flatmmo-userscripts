@@ -1,0 +1,10 @@
+{
+	"name": "hud-improved",
+	"version": "1.0.0",
+	"module": "index.ts",
+	"dependencies": {},
+	"devDependencies": {
+		"@violentmonkey/types": "^0.3.1",
+		"flatmmo-types": "workspace:*"
+	}
+}
