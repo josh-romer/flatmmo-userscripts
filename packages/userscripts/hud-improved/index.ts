@@ -104,7 +104,16 @@ const menuModal = `
   </div>
 
   <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
-    Press Ctrl+Alt+M to toggle
+    Press Alt+M to toggle settings menu
+  </div>
+  <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
+    Hold Alt+Z to move bar
+  </div>
+  <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
+    Hold Alt+J to move increase bar size
+  </div>
+  <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
+    Press Alt+K to move increase bar size
   </div>
 </div>
 `;
@@ -173,7 +182,7 @@ animationStyleSelect?.addEventListener("change", (e) => {
 let count = 0;
 let prevProgress = 0;
 const countTickFraction = (() => {
-	const tickFrames = 28;
+	const tickFrames = 30;
 	return () => {
 		const totalFrames = (progress_bar_target + 1) * tickFrames;
 		if (progress_bar_at <= 0 && prevProgress !== 0) {
@@ -200,7 +209,7 @@ function paintCustomProgressBar() {
 	//progress bar
 	const { x, y, height, width, colors } = config;
 	if (progress_bar_active) {
-		const percent = getPercent(config.animation);
+		const percent = getPercent(config.animation) ?? 0;
 		ctx.fillStyle = colors.activeBackgroundColor;
 		ctx.fillRect(x, y - TILE_SIZE / 8, width, height);
 		ctx.fillStyle = colors.activeForegroundColor;
@@ -209,6 +218,7 @@ function paintCustomProgressBar() {
 		ctx.strokeRect(x, y - TILE_SIZE / 8, width, height);
 	} else {
 		prevProgress = 0;
+		count = 0;
 		ctx.fillStyle = colors.idleBackgroundColor;
 		ctx.fillRect(x, y - TILE_SIZE / 8, width, height);
 		ctx.strokeStyle = colors.idleStrokeColor;
@@ -229,6 +239,15 @@ window.addEventListener("keyup", setCoordinates);
 
 unsafeWindow.paint_progress_bar = paint_progress_bar_proxy;
 
+const openModal = () => {
+	const modal = document.getElementById("color-picker-modal");
+	if (modal) {
+		modal.style.display = modal.style.display === "none" ? "block" : "none";
+	}
+};
+
+GM_registerMenuCommand("Settings menu", openModal, {});
+
 GM_registerMenuCommand(
 	"Reset to default settings",
 	() => {
@@ -245,33 +264,30 @@ GM_registerMenuCommand(
 );
 
 function moveBar(this: Window, ev: KeyboardEvent) {
-	if (ev.altKey && ev.ctrlKey && ev.key === "z") {
+	if (ev.altKey && ev.key === "z") {
 		config.x = mouse_over_now.x;
 		config.y = mouse_over_now.y;
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "j") {
+	if (ev.altKey && ev.key === "j") {
 		config.width = config.width * 0.9;
 		config.height = config.height * 0.9;
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "k") {
+	if (ev.altKey && ev.key === "k") {
 		config.width = config.width * 1.1;
 		config.height = config.height * 1.1;
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "m") {
-		const modal = document.getElementById("color-picker-modal");
-		if (modal) {
-			modal.style.display = modal.style.display === "none" ? "block" : "none";
-		}
+	if (ev.altKey && ev.key === "m") {
+		openModal();
 	}
 }
 function setCoordinates(this: Window, ev: KeyboardEvent) {
-	if (ev.altKey && ev.ctrlKey && ev.key === "z") {
+	if (ev.altKey && ev.key === "z") {
 		GM_setValue("config", config);
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "j") {
+	if (ev.altKey && ev.key === "j") {
 		GM_setValue("config", config);
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "k") {
+	if (ev.altKey && ev.key === "k") {
 		GM_setValue("config", config);
 	}
 }
