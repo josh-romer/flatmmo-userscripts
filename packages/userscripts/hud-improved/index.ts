@@ -104,7 +104,16 @@ const menuModal = `
   </div>
 
   <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
-    Press Ctrl+Alt+M to toggle
+    Press Alt+M to toggle settings menu
+  </div>
+  <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
+    Hold Alt+Z to move bar
+  </div>
+  <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
+    Hold Alt+J to move increase bar size
+  </div>
+  <div style="margin-top: 15px; font-size: 12px; color: #666; text-align: center;">
+    Press Alt+K to move increase bar size
   </div>
 </div>
 `;
