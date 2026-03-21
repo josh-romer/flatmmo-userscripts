@@ -230,6 +230,15 @@ window.addEventListener("keyup", setCoordinates);
 
 unsafeWindow.paint_progress_bar = paint_progress_bar_proxy;
 
+const openModal = () => {
+	const modal = document.getElementById("color-picker-modal");
+	if (modal) {
+		modal.style.display = modal.style.display === "none" ? "block" : "none";
+	}
+};
+
+GM_registerMenuCommand("Settings menu", openModal, {});
+
 GM_registerMenuCommand(
 	"Reset to default settings",
 	() => {
@@ -246,33 +255,30 @@ GM_registerMenuCommand(
 );
 
 function moveBar(this: Window, ev: KeyboardEvent) {
-	if (ev.altKey && ev.ctrlKey && ev.key === "z") {
+	if (ev.altKey && ev.key === "z") {
 		config.x = mouse_over_now.x;
 		config.y = mouse_over_now.y;
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "j") {
+	if (ev.altKey && ev.key === "j") {
 		config.width = config.width * 0.9;
 		config.height = config.height * 0.9;
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "k") {
+	if (ev.altKey && ev.key === "k") {
 		config.width = config.width * 1.1;
 		config.height = config.height * 1.1;
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "m") {
-		const modal = document.getElementById("color-picker-modal");
-		if (modal) {
-			modal.style.display = modal.style.display === "none" ? "block" : "none";
-		}
+	if (ev.altKey && ev.key === "m") {
+		openModal();
 	}
 }
 function setCoordinates(this: Window, ev: KeyboardEvent) {
-	if (ev.altKey && ev.ctrlKey && ev.key === "z") {
+	if (ev.altKey && ev.key === "z") {
 		GM_setValue("config", config);
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "j") {
+	if (ev.altKey && ev.key === "j") {
 		GM_setValue("config", config);
 	}
-	if (ev.altKey && ev.ctrlKey && ev.key === "k") {
+	if (ev.altKey && ev.key === "k") {
 		GM_setValue("config", config);
 	}
 }
