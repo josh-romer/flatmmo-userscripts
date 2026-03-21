@@ -173,7 +173,7 @@ animationStyleSelect?.addEventListener("change", (e) => {
 let count = 0;
 let prevProgress = 0;
 const countTickFraction = (() => {
-	const tickFrames = 28;
+	const tickFrames = 30;
 	return () => {
 		const totalFrames = (progress_bar_target + 1) * tickFrames;
 		if (progress_bar_at <= 0 && prevProgress !== 0) {
@@ -200,7 +200,7 @@ function paintCustomProgressBar() {
 	//progress bar
 	const { x, y, height, width, colors } = config;
 	if (progress_bar_active) {
-		const percent = getPercent(config.animation);
+		const percent = getPercent(config.animation) ?? 0;
 		ctx.fillStyle = colors.activeBackgroundColor;
 		ctx.fillRect(x, y - TILE_SIZE / 8, width, height);
 		ctx.fillStyle = colors.activeForegroundColor;
@@ -209,6 +209,7 @@ function paintCustomProgressBar() {
 		ctx.strokeRect(x, y - TILE_SIZE / 8, width, height);
 	} else {
 		prevProgress = 0;
+		count = 0;
 		ctx.fillStyle = colors.idleBackgroundColor;
 		ctx.fillRect(x, y - TILE_SIZE / 8, width, height);
 		ctx.strokeStyle = colors.idleStrokeColor;
