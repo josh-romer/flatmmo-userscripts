@@ -63,3 +63,5 @@ declare const players: player[];
 declare const npcs: npc[];
 
 declare const Globals: Globals;
+
+declare let is_volcan_heat: boolean;
