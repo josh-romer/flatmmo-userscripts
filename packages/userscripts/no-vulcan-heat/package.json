@@ -1,0 +1,9 @@
+{
+	"name": "no-vulcan-heat",
+	"version": "1.0.0",
+	"module": "index.ts",
+	"dependencies": {},
+	"devDependencies": {
+		"flatmmo-types": "workspace:*"
+	}
+}
