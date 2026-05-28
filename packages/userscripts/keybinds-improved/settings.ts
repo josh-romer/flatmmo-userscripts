@@ -32,7 +32,7 @@ const formatActionName = (action: string): string => {
 };
 
 const CATEGORIES: Record<string, (keyof actions)[]> = {
-	"Basic Actions": ["run", "eat", "lightFire"],
+	"Basic Actions": ["run", "eat", "lightFire", "dodge"],
 	Equipment: ["equip1", "equip2", "equip3"],
 	Badges: ["badge1", "badge2", "badge3", "badge4"],
 	Teleports: [

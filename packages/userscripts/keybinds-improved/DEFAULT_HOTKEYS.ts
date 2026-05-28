@@ -71,6 +71,13 @@ export const DEFAULT_HOTKEYS: Record<keyof actions, keypress> = {
 		metaKey: false,
 		shiftKey: false,
 	},
+	dodge: {
+		key: "g",
+		altKey: false,
+		ctrlKey: false,
+		metaKey: false,
+		shiftKey: false,
+	},
 	teleport_everbrook: {
 		key: "e",
 		altKey: false,

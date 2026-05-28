@@ -16,6 +16,11 @@ export const ACTIONS: actions = {
 		description: "Lights a fire",
 		socketCommand: "SHORTCUT_KEY=F3",
 	},
+	dodge: {
+		originalKey: "F4",
+		description: "dodges attacks",
+		socketCommand: "SHORTCUT_KEY=F4",
+	},
 	equip1: {
 		originalKey: "F6",
 		description: "Equipment Auto equips items that you've configured",

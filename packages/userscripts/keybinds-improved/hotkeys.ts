@@ -25,6 +25,7 @@ export type actions = {
 	badge2: actionProperties;
 	badge3: actionProperties;
 	badge4: actionProperties;
+	dodge: actionProperties;
 	teleport_everbrook: actionProperties;
 	remote_sell: actionProperties;
 	dig: actionProperties;
